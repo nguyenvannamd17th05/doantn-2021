@@ -1,0 +1,9 @@
+.error-text{
+
+    color: red;
+    font-style: italic;
+}
+.active-sidebar{
+    background: #00a8c6;
+    border-radius:.25rem ;
+}
