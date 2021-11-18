@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    @include('components.silder')
+
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs">
         <div class="container">
@@ -12,7 +12,11 @@
                                 <a href="{{route('home.index')}}">Trang chủ</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
-                            <li class="category3"><span>Chi tiết sản phẩm</span></li>
+                            <li class="home">
+                                <a href="{{url()->previous() }}">{{$productDetail->category->c_name}}</a>
+                                <span><i class="fa fa-angle-right"></i></span>
+                            </li>
+                            <li class="category3"><span>{{$productDetail->pro_name}}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -34,10 +38,10 @@
                         <div class="single-zoom-thumb">
                             <ul class="bxslider" id="gallery_01">
                                 <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="img/product-details/big-1-1.jpg" data-zoom-image="img/product-details/ex-big-1-1.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-1" /></a>
+                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{pare_url_file($productDetail->pro_image,'product')}}" data-zoom-image="{{pare_url_file($productDetail->pro_image,'product')}}"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-1" /></a>
                                 </li>
                                 <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-1-2.jpg" data-zoom-image="img/product-details/ex-big-1-2.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-2"></a>
+                                    <a href="#" class="elevatezoom-gallery" data-image="{{pare_url_file($productDetail->pro_image,'product')}}" data-zoom-image="{{pare_url_file($productDetail->pro_image,'product')}}"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-2"></a>
                                 </li>
                                 <li class="">
                                     <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-1-3.jpg" data-zoom-image="img/product-details/ex-big-1-3.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="ex-big-3" /></a>
@@ -75,13 +79,18 @@
                                         <a href="#"><i class="fa fa-star"></i></a>
                                     </div>
                                     <div class="price-boxes">
-                                        <span class="new-price">{{number_format($productDetail->pro_price,0,',','.')}}đ</span>
+                                        @if ($productDetail->pro_sale)
+                                            <span class="new-price" style="text-decoration: line-through;color: #666;font-weight: 500;">{{ number_format($productDetail->pro_price,0,',','.') }}đ</span>
+                                            <span class="new-price">{{ number_format(round((100 - $productDetail->pro_sale) * $productDetail->pro_price / 100,0),0,',','.') }}đ</span>
+                                        @else
+                                            <span class="new-price">{{ number_format($productDetail->pro_price,0,',','.') }} đ</span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="product-desc">
                                     <p>{{$productDetail->pro_desc}}</p>
                                 </div>
-                                <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                <p class="availability in-stock">Tình trạng: <span>Còn hàng</span></p>
                                 <div class="actions-e">
                                     <div class="action-buttons-single">
                                         <div class="inputx-content">
@@ -89,7 +98,7 @@
                                             <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="#">Add to cart</a>
+                                            <a href="{{route('cart.addProduct',$productDetail->id)}}">Add to cart</a>
                                         </div>
                                         <div class="add-to-links">
                                             <div class="add-to-wishlist">
