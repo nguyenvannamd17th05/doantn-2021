@@ -38,7 +38,15 @@ Route::get('/san-pham/{slug}-{id}',[ProductController::class,'detailProduct'])->
 
 Route::group(['prefix'=>'shopping'],function(){
    Route::get('/add/{id}',[CartController::class,'addProduct'])->name('cart.addProduct');
+   Route::get('/delete/{id}',[CartController::class,'deleteProduct'])->name('cart.delProduct');
    Route::get('danh-sach',[CartController::class,'getListCart'])->name('cart.listCart');
 });
+
+Route::group(['prefix'=>'gio-hang','middleware'=>'CheckLoginUser'],function (){
+   Route::get('thanh-toan',[CartController::class,'getPay'])->name('cart.pay');
+   Route::post('thanh-toan',[CartController::class,'saveInfoShip']);
+});
+
+
 
 

@@ -33,15 +33,30 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Tên danh mục</th>
-                                <th scope="col">Title Seo</th>
-
+                                <th scope="col">Tên khách hàng</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Email</th>
                                 <th scope="col">Trạng thái</th>
-                                <th scope="col">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->email}}</td>
+                                    @if($user->active==1)
+                                        <td>Đã kích hoạt</td>
+                                    @else
+                                        <td>
+                                        Chưa kích hoạt
+                                        </td>
+                                        @endif
+                                </tr>
 
+
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -94,27 +94,27 @@
 @include('components.header')
 <!-- header area end -->
 <!-- start home slider -->
-@include('components.silder')
+
 <!-- end home slider -->
 @yield('content')
 
 <!-- Brand Logo Area Start -->
-<div class="brand-area">
-    <div class="container">
-        <div class="row">
-            <div class="brand-carousel">
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg1-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg2-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg3-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg4-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg5-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg2-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg3-brand.jpg')}}" alt="" /></a></div>
-                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg4-brand.jpg')}}" alt="" /></a></div>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="brand-area">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="brand-carousel">--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg1-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg2-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg3-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg4-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg5-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg2-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg3-brand.jpg')}}" alt="" /></a></div>--}}
+{{--                <div class="brand-item"><a href="#"><img src="{{asset('home/img/brand/bg4-brand.jpg')}}" alt="" /></a></div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <!-- Brand Logo Area End -->
 <!-- FOOTER START -->
 @include('components.footer')

@@ -5,7 +5,7 @@ use Modules\Admin\Http\Controllers\AdminArticleController;
 use Modules\Admin\Http\Controllers\OrderController;
 use Modules\Admin\Http\Controllers\AdminUserController;
 use Modules\Admin\Http\Controllers\SliderController;
-
+use Modules\Admin\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,11 @@ Route::prefix('admin')->group(function() {
     });
     Route::group(['prefix' => 'order'], function(){
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.index');
-
+    });
+    Route::group(['prefix' => 'transaction'], function(){
+        Route::get('/', [TransactionController::class, 'index'])->name('admin.transaction.index');
+        Route::get('/view/{id}', [TransactionController::class, 'viewOrder'])->name('admin.transaction.view');
+        Route::get('/{action}/{id}', [TransactionController::class, 'action'])->name('admin.transaction.action');
     });
     Route::group(['prefix' => 'user'], function(){
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.index');

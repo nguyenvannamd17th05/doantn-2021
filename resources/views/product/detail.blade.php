@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+    @include('components.silder')
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs">
         <div class="container">

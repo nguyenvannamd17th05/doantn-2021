@@ -78,7 +78,6 @@
                                                 <ul style="padding-left: 15px">
                                                     <li><span><i class="fas fa-dollar-sign">: </i></span><span> {{number_format($product->pro_price,0,',','.')}}đ</span></li>
                                                     <li><span><i class="fas fa-tag">: </i></span><span> {{$product->pro_sale}}%</span></li>
-
                                                 </ul>
                                             </td>
                                             <td>{{isset($product->category->c_name)?$product->category->c_name:'[N\A]'}}</td>

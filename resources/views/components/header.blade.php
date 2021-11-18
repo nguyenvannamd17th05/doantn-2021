@@ -215,7 +215,7 @@
                         <div class="circle-shopping expand">
                             <div class="shopping-carts text-right">
                                 <div class="cart-toggler">
-                                    <a href="#"><i class="icon-bag"></i></a>
+                                    <a href="{{route('cart.listCart')}}"><i class="icon-bag"></i></a>
                                     <a href="#"><span class="cart-quantity">{{\Cart::count()}}</span></a>
                                 </div>
                                 <div class="restrain small-cart-content">
@@ -224,7 +224,7 @@
                                         @if(isset($productsCart))
                                             @foreach($productsCart as $productCart)
                                         <li>
-                                            <a class="sm-cart-product" href="product-details.html">
+                                            <a class="sm-cart-product" href="{{route('product.detail',[\Illuminate\Support\Str::slug($productCart->name),$productCart->id])}}">
                                                 <img src="{{asset(pare_url_file($productCart->options->image,'product'))}}" alt="">
                                             </a>
                                             <div class="small-cart-detail">
@@ -237,7 +237,7 @@
                                     </ul>
 
                                     @endforeach
-                                    <p class="total">Subtotal: <span class="amount">{{\Cart::subtotal()}}</span></p>
+                                    <p class="total">Tổng tiền: <span class="amount">{{\Cart::subtotal(0,',','.')}}</span></p>
                                     @endif
                                     <p class="buttons">
                                         <a href="checkout.html" class="button">Checkout</a>

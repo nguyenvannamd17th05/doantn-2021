@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item {{Route::currentRouteName()=='admin.order.index'?'active-sidebar':''}}">
-                    <a href="{{route('admin.order.index')}}" class="nav-link">
+                    <a href="{{route('admin.transaction.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-file-invoice-dollar"></i>
                         <p>
                             Quản lý đơn hàng

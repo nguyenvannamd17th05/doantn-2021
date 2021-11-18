@@ -1,5 +1,6 @@
 @extends('layout.app')
 @section('content')
+    @include('components.silder')
     <!-- product section start -->
     <div class="our-product-area">
         <div class="container">
