@@ -91,7 +91,7 @@ class ProductController extends Controller
                     $product->save();
                     break;
                 case 'hot':
-                    $product->pro_hot =! $product->pro_hot ;
+                    $product->pro_hot =!($product->pro_hot) ;
                     $product->save();
                     break;
             }

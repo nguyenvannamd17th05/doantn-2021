@@ -7,6 +7,7 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js" lang="">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Lavoro | Home 1</title>
@@ -16,7 +17,7 @@
     <!-- Favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('home/img/favicon.ico')}}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Fonts
     ============================================ -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -170,5 +171,7 @@
 <!-- main js
 ============================================ -->
 <script src="{{asset('home/js/main.js')}}"></script>
+<script src="{{asset('home/js/sweetalert2@11.js')}}"></script>
+@yield('script')
 </body>
 </html>

@@ -6,7 +6,8 @@ use Modules\Admin\Http\Controllers\OrderController;
 use Modules\Admin\Http\Controllers\AdminUserController;
 use Modules\Admin\Http\Controllers\SliderController;
 use Modules\Admin\Http\Controllers\TransactionController;
-
+use Modules\Admin\Http\Controllers\RatingController;
+use Modules\Admin\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,9 @@ Route::prefix('admin')->group(function() {
         Route::post('/update/{id}', [AdminUserController::class, 'update']);
         Route::get('/{action}/{id}', [AdminUserController::class, 'action'])->name('admin.user.action');
     });
+    Route::group(['prefix' => 'rating'], function() {
+        Route::get('/', [RatingController::class, 'index'])->name('admin.rating.index');
+    });
     Route::group(['prefix' => 'slider'], function(){
         Route::get('/', [SliderController::class, 'index'])->name('admin.slider.index');
         Route::get('/create', [SliderController::class, 'create'])->name('admin.slider.create');
@@ -67,5 +71,9 @@ Route::prefix('admin')->group(function() {
         Route::get('/update/{id}', [SliderController::class, 'edit'])->name('admin.slider.edit');
         Route::post('/update/{id}', [SliderController::class, 'update']);
         Route::get('/{action}/{id}', [SliderController::class, 'action'])->name('admin.user.action');
+    });
+    Route::group(['prefix' => 'contact'], function() {
+        Route::get('/', [ContactController::class, 'index'])->name('admin.contact.index');
+        Route::get('/action/{name}/{id}',[ContactController::class,'action'])->name('admin.contact.action.');
     });
 });

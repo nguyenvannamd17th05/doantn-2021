@@ -1,6 +1,55 @@
 @extends('layout.app')
 @section('content')
+<style>
+    .product-tab-content
+    {
+        overflow: hidden;
+    }
 
+    .product-tab-content h2 { font-size: 24px !important;}
+    .product-tab-content h3 { font-size: 20px !important;}
+    .product-tab-content h4 { font-size: 18px !important;}
+
+    .product-tab-content img {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 100%;
+        display: block;
+    }
+    .list-star i:hover{
+        cursor: pointer;
+    }
+    .list_text{
+        display: inline-block;
+        margin-left: 10px;
+        position: relative;
+        background: #52b858;
+        color: #fff;
+        padding: 2px 8px;
+        box-sizing: border-box;
+        font-size: 12px;
+        border-radius: 2px;
+        display: none;
+    }
+    .list_text::after
+    {
+        right: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(82,184,88,0);
+        border-right-color: #52b858;
+        border-width: 6px;
+        margin-top: -6px;
+    }
+    .list-star .rating_active, .pro-rating .active{
+        color: #ff9075 ;
+    }
+</style>
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs">
         <div class="container">
@@ -69,14 +118,21 @@
                     <div class="product-list-wrapper">
                         <div class="single-product">
                             <div class="product-content">
-                                <h2 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h2>
+                                <h1 class="product-name"><a href="#">{{$productDetail->pro_name}}</a></h1>
                                 <div class="rating-price">
+                                    <?php
+                                    $rateDetail=0;
+                                    if($productDetail->pro_total_rating)
+                                    {
+                                        $rateDetail=round($productDetail->pro_total_rate_number/$productDetail->pro_total_rating,2);
+                                    }
+
+                                    ?>
                                     <div class="pro-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
+                                        @for($i=1;$i<=5;$i++)
+                                        <a href="#"><i class="fa fa-star {{$i<=$rateDetail?'active':''}}"></i></a>
+                                        @endfor
+                                        <p>({{$productDetail->pro_total_rating}} đánh giá)</p>
                                     </div>
                                     <div class="price-boxes">
                                         @if ($productDetail->pro_sale)
@@ -132,65 +188,142 @@
                                 <p>{!!$productDetail->pro_content!!}</p>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="messages">
-                            <div class="single-post-comments col-md-6 col-md-offset-3">
-                                <div class="comments-area">
-                                    <h3 class="comment-reply-title">1 REVIEW FOR TURPIS VELIT ALIQUET</h3>
-                                    <div class="comments-list">
-                                        <ul>
-                                            <li>
-                                                <div class="comments-details">
-                                                    <div class="comments-list-img">
-                                                        <img src="img/user-1.jpg" alt="">
-                                                    </div>
-                                                    <div class="comments-content-wrap">
-															<span>
-																<b><a href="#">Admin - </a></b>
-																<span class="post-time">October 6, 2014 at 1:38 am</span>
-															</span>
-                                                        <p>Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <div class="component_rating" style="margin-bottom: 20px">
+                            <h3>Đánh giá sản phẩm</h3>
+                            <div class="component_rating_content" style="display: flex;align-items: center;border-radius: 5px;border:1px solid #dedede">
+                                <div class="rating_item" style="width: 20%;position: relative">
+                                    <span class="fa fa-star" style="font-size: 100px;display: block;color: #ff9705;margin: 0 auto;text-align: center;"></span><b style="position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color: white;font-size: 20px;">2.5</b>
                                 </div>
-                                <div class="comment-respond">
-                                    <h3 class="comment-reply-title">Add a review</h3>
-                                    <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p>Name *</p>
-                                                <input type="text">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <p>Email *</p>
-                                                <input type="email">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <p>Your Rating</p>
-                                                <div class="pro-rating">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star-o"></i></a>
-                                                    <a href="#"><i class="fa fa-star-o"></i></a>
+                                <div class="list_rating" style="width: 60%;padding: 20px;">
+                                        @for($i=1;$i<=5;$i++)
+                                        <div class="item_rating" style="display:flex; align-items: center;">
+                                                <div style="width: 10%;font-size: 14px">
+                                                    {{$i}}<span class="fa fa-star"></span>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-12 comment-form-comment">
-                                                <p>Your Review</p>
-                                                <textarea id="message" cols="30" rows="10"></textarea>
-                                                <input type="submit" value="Submit">
-                                            </div>
+                                                <div style="width: 70%;margin:0 20px">
+                                                    <span style="width: 100%;height: 8px;display: block;border: 1px solid #dedede;border-radius: 5px;background-color: #dedede">
+                                                        <b style="width: 30%;background-color:#f25800;display: block;border-radius: 5px;height: 100%;">
+
+                                                        </b>
+                                                    </span>
+                                                </div>
+                                                <div style="width: 20%">
+                                                    <a href="" style="">290 đánh giá </a>
+                                                </div>
                                         </div>
-                                    </form>
+                                        @endfor
+                                </div>
+
+                                <div style="width: 20%">
+                                    <a href="" class="js_rating_action" style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Gửi đánh giá</a>
+                                </div>
+
+                        </div>
+                            <?php
+                                $listRatingText=[
+                                    1=>'Không thích',
+                                    2=>'Tạm được',
+                                    3=>'Bình thường',
+                                    4=>'Rất tốt',
+                                    5=>'Tuyệt vời quá',
+                                ]
+                            ?>
+                            <div class="form_rating hide">
+                                <div style="display: flex; margin-top: 15px; font-size: 15px">
+                                    <p style="margin-bottom: 0">Chọn đánh giá của bạn</p>
+                                    <span style="margin: 0 15px" class="list-star">
+                                    @for($i=1;$i<=5;$i++)
+                                            <i class="fa fa-star" data-key="{{$i}}">
+                                            </i>
+                                        @endfor
+                                    </span>
+                                    <span class="list_text">
+                                    </span>
+                                    <input type="hidden" value="" class="number_rating">
+                                </div>
+                                <div style="margin-top: 15px">
+                                    <textarea name="" class="form-control" id="ra_content" cols="30" rows="3"></textarea>
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <a class="js_rating_product" href="{{route('rating.product',$productDetail->id)}}" style="width: 20px;background: #288ad6;padding:5px 10px;color: white;border-radius: 5px ">Gửi đánh giá</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(function(){
+            let listStar=$(".list-star .fa");
+            listRatingText  = {
+                1 : 'Không thích',
+                2 : 'Tạm được',
+                3 : 'Bình thường',
+                4 : 'Rất tốt',
+                5 : 'Tuyệt vời quá',
+            }
+            listStar.mouseover(function (){
+                let $this=$(this);
+                let number = $this.attr('data-key');
+                listStar.removeClass('rating_active')
+                $(".number_rating").val(number);
+                $.each(listStar,function (key,value){
+                    if(key+1<=number){
+                        $(this).addClass('rating_active')
+                    }
+                    else {
+
+                    }
+                })
+                $(".list_text").text('').text(listRatingText[number]).show();
+            })
+            $(".js_rating_action").click(function (event){
+                event.preventDefault()
+
+                if($(".form_rating").hasClass('hide')){
+                    $(".form_rating").addClass('active').removeClass('hide')
+                }else {
+                    $(".form_rating").addClass('hide').removeClass('active')
+                }
+            })
+            $(".js_rating_product").click(function (event){
+                event.preventDefault()
+                let content=$("#ra_content").val();
+                let number=$(".number_rating").val()
+                let url=$(this).attr('href')+'?_token=' + '{{ csrf_token() }}'
+                if(content && number)
+                {
+                    $.ajax({
+                        url:url,
+                        type:'POST',
+                        data:{
+                            number: number,
+                            r_content: content
+                        }
+                    }).done(function (result){
+                        console.log(result)
+                        if (result.code == 1)
+                        {
+                            Swal.fire(
+                                'Thành công!',
+                                'Cảm ơn về đánh giá của bạn!',
+                                'success'
+                            )
+
+                        }
+                    })
+                }
+            })
+        })
+    </script>
 @endsection

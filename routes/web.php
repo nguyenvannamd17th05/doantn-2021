@@ -7,7 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Http\Request;
 
 /*
@@ -41,12 +42,18 @@ Route::group(['prefix'=>'shopping'],function(){
    Route::get('/delete/{id}',[CartController::class,'deleteProduct'])->name('cart.delProduct');
    Route::get('danh-sach',[CartController::class,'getListCart'])->name('cart.listCart');
 });
-
 Route::group(['prefix'=>'gio-hang','middleware'=>'CheckLoginUser'],function (){
    Route::get('thanh-toan',[CartController::class,'getPay'])->name('cart.pay');
    Route::post('thanh-toan',[CartController::class,'saveInfoShip']);
 });
-
+Route::group(['prefix'=>'lien-he'],function (){
+    Route::get('/',[ContactController::class,'getContact'])->name('contact.get');
+    Route::post('/',[ContactController::class,'saveContact']);
+});
+Route::group(['prefix'=>'ajax','middleware'=>'CheckLoginUser'],function (){
+    Route::post('danh-gia/{id}',[RatingController::class,'saveRating'])->name('rating.product');
+});
+Route::post('thanh-toan',[RatingController::class,'saveInfoShip']);
 
 
 

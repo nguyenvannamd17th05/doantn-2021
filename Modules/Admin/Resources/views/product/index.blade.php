@@ -4,6 +4,11 @@
     <title>Admin System</title>
 @endsection
 @section('content')
+    <style>
+        .rating .active{
+            color: #ff9075 !important;
+        }
+    </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 
@@ -71,6 +76,14 @@
                             <tbody >
                                 @if(isset($products))
                                     @foreach($products as $product)
+                                        <?php
+                                            $rate=0;
+                                            if($product->pro_total_rating)
+                                            {
+                                                $rate=round($product->pro_total_rate_number/$product->pro_total_rating,2);
+                                            }
+
+                                        ?>
                                         <tr>
                                             <th scope="row">{{$product->id}}</th>
                                             <td>
@@ -78,6 +91,14 @@
                                                 <ul style="padding-left: 15px">
                                                     <li><span><i class="fas fa-dollar-sign">: </i></span><span> {{number_format($product->pro_price,0,',','.')}}đ</span></li>
                                                     <li><span><i class="fas fa-tag">: </i></span><span> {{$product->pro_sale}}%</span></li>
+                                                    <li><span>Đánh giá: </span>
+                                                        <span class="rating">
+                                                            @for($i=1;$i<=5;$i++)
+                                                                <i class="fa fa-star {{$i<=$rate?'active':''}}" style="color: #999"></i>
+                                                                @endfor
+                                                        </span>
+                                                        <span>({{$rate}})</span>
+                                                    </li>
                                                 </ul>
                                             </td>
                                             <td>{{isset($product->category->c_name)?$product->category->c_name:'[N\A]'}}</td>

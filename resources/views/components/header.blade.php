@@ -31,7 +31,7 @@
                             <li class="expand"><a href="">Giới thiệu</a>
 
                             </li>
-                            <li class="expand"><a href="">Liên hệ</a>
+                            <li class="expand"><a href="{{route('contact.get')}}">Liên hệ</a>
 
                             </li>
                             <li class="expand"><a href="">Quảng cáo</a>
