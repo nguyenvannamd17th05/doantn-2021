@@ -7,8 +7,13 @@ use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 
-class ContactController extends Controller
+class ContactController extends FrontendController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function getContact(){
         return view('contact');
     }

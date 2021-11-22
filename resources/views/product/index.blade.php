@@ -1,5 +1,10 @@
 @extends('layout.app')
 @section('content')
+    <style>
+        .sidebar-content .active{
+            color: #c2a476;
+        }
+    </style>
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
@@ -52,73 +57,19 @@
                             </ul>
                         </aside>
                         <aside class="topbarr-category sidebar-content">
-                            <div class="tpbr-title sidebar-title col-md-12 nopadding">
-                                <h6>Filter by price</h6>
-                            </div>
-                            <div class="tpbr-menu col-md-12 nopadding">
-                                <!-- shop-filter start -->
-                                <div class="price-bar">
-                                    <div class="info_widget">
-                                        <div class="price_filter">
-                                            <div id="slider-range"></div>
-                                            <div class="price_slider_amount">
-                                                <input type="submit" class="filter-price" value="Filter"/>
-                                                <div class="filter-ranger">
-                                                    <h6>Price:</h6>
-                                                    <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- shop-filter end -->
-                            </div>
-                        </aside>
-                        <aside class="hd-gg sidebar-content">
                             <div class="sidebar-title">
-                                <h6>Size</h6>
+                                <h6>Khoảng giá</h6>
                             </div>
                             <ul>
-                                <li><a href="#">S</a><span> (18)</span></li>
-                                <li><a href="#">M</a><span> (24)</span></li>
-                                <li><a href="#">L</a><span> (21)</span></li>
+                                <li><a class="{{Request::get('price')==1?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 1]) }} ">Dưới 2 triệu</a><span> (1)</span></li>
+                                <li><a class="{{Request::get('price')==2?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 2]) }} ">Từ 2-4 triệu</a><span> (2)</span></li>
+                                <li><a class="{{Request::get('price')==3?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 3]) }} ">Từ 4-7 triệu</a><span> (2)</span></li>
+                                <li><a class="{{Request::get('price')==4?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 4]) }} ">Từ 7-13 triệu</a><span> (2)</span></li>
+                                <li><a class="{{Request::get('price')==5?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 5]) }} ">Từ 13-20 triệu</a><span> (2)</span></li>
+                                <li><a class="{{Request::get('price')==6?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 6]) }} ">Trên 20 triệu</a><span> (2)</span></li>
                             </ul>
                         </aside>
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Color</h6>
-                            </div>
-                            <ul>
-                                <li><a href="#">Beige</a><span> (1)</span></li>
-                                <li><a href="#">White</a><span> (2)</span></li>
-                                <li><a href="#">Orange</a><span> (2)</span></li>
-                                <li><a href="#">Black</a><span> (2)</span></li>
-                                <li><a href="#">Blue</a><span> (2)</span></li>
-                                <li><a href="#">Green</a><span> (2)</span></li>
-                                <li><a href="#">Yellow</a><span> (2)</span></li>
-                                <li><a href="#">Pink</a><span> (2)</span></li>
-                            </ul>
-                        </aside>
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Composition</h6>
-                            </div>
-                            <ul>
-                                <li><a href="#">Cotton</a><span> (3)</span></li>
-                                <li><a href="#">Polyester</a><span> (9)</span></li>
-                                <li><a href="#">Viscose</a><span> (9)</span></li>
-                            </ul>
-                        </aside>
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Styles</h6>
-                            </div>
-                            <ul>
-                                <li><a href="#">Casual</a><span> (1)</span></li>
-                                <li><a href="#">Dressy</a><span> (2)</span></li>
-                                <li><a href="#">Girly</a><span> (2)</span></li>
-                            </ul>
-                        </aside>
+
                         <aside class="sidebar-content">
                             <div class="sidebar-title">
                                 <h6>Properties</h6>
@@ -157,42 +108,22 @@
                     <!-- shop toolbar start -->
                     <div class="shop-content-area">
                         <div class="shop-toolbar">
-                            <div class="col-md-4 col-sm-4 col-xs-12 nopadding-left text-left">
-                                <form class="tree-most" method="get">
-                                    <div class="orderby-wrapper">
-                                        <label>Sort By</label>
-                                        <select name="orderby" class="orderby">
-                                            <option value="menu_order" selected="selected">Default sorting</option>
-                                            <option value="popularity">Sort by popularity</option>
-                                            <option value="rating">Sort by average rating</option>
-                                            <option value="date">Sort by newness</option>
-                                            <option value="price">Sort by price: low to high</option>
-                                            <option value="price-desc">Sort by price: high to low</option>
+                            <div class="col-xs-12 nopadding-left text-left">
+                                <form class="tree-most" action="" id="form_sort" method="get">
+                                    <div class="orderby-wrapper pull-right">
+                                        <label>Sắp xếp</label>
+                                        <select name="orderby"  class="orderby">
+                                            <option {{Request::get('orderby')=='md' || !Request::get('orderby') ?'selected':''}} value="md" selected="selected">Mặc định</option>
+                                            <option {{Request::get('orderby')=='desc'?'selected':''}}  value="desc">Mới nhất</option>
+                                            <option {{Request::get('orderby')=='sell'?'selected':''}}  value="sell">Bán chạy</option>
+                                            <option {{Request::get('orderby')=='price'?'selected':''}}  value="price">Giá tăng dần</option>
+                                            <option {{Request::get('orderby')=='price-desc'?'selected':''}} value="price-desc">Giá giảm dần</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-4 col-sm-4 none-xs text-center">
-                                <div class="limiter hidden-xs">
-                                    <label>Show</label>
-                                    <select>
-                                        <option selected="selected" value="">9</option>
-                                        <option value="">12</option>
-                                        <option value="">24</option>
-                                        <option value="">36</option>
-                                    </select>
-                                    per page
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12 nopadding-right text-right">
-                                <div class="view-mode">
-                                    <label>View on</label>
-                                    <ul>
-                                        <li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                        <li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
                     <!-- shop toolbar end -->
@@ -207,8 +138,14 @@
                                         <div class="two-product">
                                             <!-- single-product start -->
                                             <div class="single-product">
-                                                <span class="sale-text">Sale</span>
+
                                                 <div class="product-img">
+                                                    @if ( $product->pro_number == 0)
+                                                        <span style="position: absolute;background: #e91e63;color: white;padding: 2px 6px;border-radius: 5px;font-size: 10px;">Tạm hết hàng</span>
+                                                    @endif
+                                                    @if ($product->pro_sale)
+                                                        <span style="position: absolute;font-size:10px;background-image: linear-gradient(-90deg,#ec1f1f 0%,#ff9c00 100%);border-radius: 10px;padding: 3px 7px;color: white;right: 0">{{ $product->pro_sale }}%</span>
+                                                    @endif
                                                     <a href="{{route('product.detail',[$product->pro_slug,$product->id])}}">
                                                         <img class="primary-image" src="{{asset(pare_url_file($product->pro_image,'product'))}}" alt="" />
                                                         <img class="secondary-image" src="{{asset(pare_url_file($product->pro_image,'product'))}}" alt="" />
@@ -225,7 +162,7 @@
                                                                     <a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
                                                                 </div>
                                                                 <div class="compare-button">
-                                                                    <a href="#" title="Add to Cart"><i class="icon-bag"></i></a>
+                                                                    <a href="{{route('cart.addProduct',$product->id)}}" title="Add to Cart"><i class="icon-bag"></i></a>
                                                                 </div>
                                                             </div>
                                                             <div class="quickviewbtn">
@@ -255,40 +192,14 @@
                         <!-- shop toolbar start -->
                         <div class="shop-content-bottom">
                             <div class="shop-toolbar btn-tlbr">
-                                <div class="col-md-4 col-sm-4 col-xs-12 hidden-xs nopadding-left text-left">
-                                    <form class="tree-most" method="get">
-                                        <div class="orderby-wrapper">
-                                            <label>Sort By</label>
-                                            <select name="orderby" class="orderby">
-                                                <option value="menu_order" selected="selected">Default sorting</option>
-                                                <option value="popularity">Sort by popularity</option>
-                                                <option value="rating">Sort by average rating</option>
-                                                <option value="date">Sort by newness</option>
-                                                <option value="price">Sort by price: low to high</option>
-                                                <option value="price-desc">Sort by price: high to low</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </div>
+
                                 <div class="col-md-4 col-sm-4 col-xs-12 text-center">
                                     <div class="pages">
                                         <label>Page:</label>
-                                        <ul>
-                                            <li class="current">1</li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#" class="next i-next" title="Next"><i class="fa fa-arrow-right"></i></a></li>
-                                        </ul>
+                                        {!!$products->links()!!}
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-12 nopadding-right text-right">
-                                    <div class="view-mode">
-                                        <label>View on</label>
-                                        <ul>
-                                            <li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                            <li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         <!-- shop toolbar end -->
@@ -299,4 +210,15 @@
         </div>
     </div>
     <!-- shop-with-sidebar end -->
+@endsection
+@section('script')
+<script>
+    $(function(){
+        $(".orderby").change(function(){
+            $("#form_sort").submit();
+
+
+        })
+    })
+</script>
 @endsection

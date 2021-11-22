@@ -58,6 +58,10 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="row">
+                            {{ $ratings->links()}}
+
+                        </div>
                     </div>
 
                 </div>

@@ -37,11 +37,13 @@
                                 <th scope="col">Số điện thoại</th>
                                 <th scope="col">Tổng hóa đơn</th>
                                 <th scope="col">Trạng thái</th>
+                                <th scope="col">Ngày mua</th>
                                 <th scope="col">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($transactions as $transaction)
+                                    <tr>
                                     <td>{{$transaction->id}}</td>
                                     <td>{{isset($transaction->user->name)?$transaction->user->name:'[N\A]'}}</td>
                                     <td>{{$transaction->tr_address}}</td>
@@ -49,18 +51,24 @@
                                     <td>{{number_format($transaction->tr_total,0,',','.')}}đ</td>
                                     <td>
                                         @if($transaction->tr_status==1)
-                                            <a href="" class="label badge-success">Đã xác nhận</a>
+                                            <p href="" class="badge badge-success">Đã xác nhận</p>
                                         @else
-                                            <a href="" class="badge badge-secondary">Chờ xác nhận</a>
+                                            <a href="{{route('admin.transaction.active',$transaction->id)}}" class="badge badge-secondary">Chờ xác nhận</a>
                                         @endif
                                     </td>
+                                    <td>{{$transaction->created_at->format('d-m-Y')}}</td>
                                     <td>
                                         <a class="btn btn-default" href="{{route('admin.transaction.action',['delete',$transaction->id])}}" ><i class="fas fa-trash"></i> Xóa</a>
                                         <a class="btn btn-default js_order_item" data-id="{{$transaction->id}}" data-total="Tổng hóa đơn: {{number_format($transaction->tr_total,0,',','.') }} đ" href="{{route('admin.transaction.view',$transaction->id)}}" ><i class="fas fa-eye"></i></a>
                                     </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="row">
+                            {{ $transactions->links()}}
+
+                        </div>
                     </div>
 
                 </div>

@@ -51,7 +51,8 @@ Route::prefix('admin')->group(function() {
     Route::group(['prefix' => 'transaction'], function(){
         Route::get('/', [TransactionController::class, 'index'])->name('admin.transaction.index');
         Route::get('/view/{id}', [TransactionController::class, 'viewOrder'])->name('admin.transaction.view');
-        Route::get('/{action}/{id}', [TransactionController::class, 'action'])->name('admin.transaction.action');
+        Route::get('/active/{id}', [TransactionController::class, 'active'])->name('admin.transaction.active');
+        Route::get('/{action}/{id}', [TransactionController::class, 'active'])->name('admin.transaction.action');
     });
     Route::group(['prefix' => 'user'], function(){
         Route::get('/', [AdminUserController::class, 'index'])->name('admin.user.index');
@@ -74,6 +75,6 @@ Route::prefix('admin')->group(function() {
     });
     Route::group(['prefix' => 'contact'], function() {
         Route::get('/', [ContactController::class, 'index'])->name('admin.contact.index');
-        Route::get('/action/{name}/{id}',[ContactController::class,'action'])->name('admin.contact.action.');
+        Route::get('/{action}/{id}',[ContactController::class,'action'])->name('admin.contact.action');
     });
 });

@@ -76,9 +76,17 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item {{Route::currentRouteName()=='admin.contact.index'?'active-sidebar':''}}">
+                    <a href="{{route('admin.contact.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-phone-square-alt"></i>
+                        <p>
+                            Quản lý liên hệ
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item {{Route::currentRouteName()=='admin.rating.index'?'active-sidebar':''}}">
                     <a href="{{route('admin.rating.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                        <i class="nav-icon fas fa-star"></i>
                         <p>
                             Đánh giá sản phẩm
                         </p>

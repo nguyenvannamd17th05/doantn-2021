@@ -99,6 +99,7 @@
                                                         </span>
                                                         <span>({{$rate}})</span>
                                                     </li>
+                                                    <li><span>Số lượng: </span> <span>{{$product->pro_number}}</span></li>
                                                 </ul>
                                             </td>
                                             <td>{{isset($product->category->c_name)?$product->category->c_name:'[N\A]'}}</td>
@@ -122,6 +123,10 @@
 
                             </tbody>
                         </table>
+                        <div class="row">
+                            {{ $products->links()}}
+
+                        </div>
                     </div>
 
                 </div>

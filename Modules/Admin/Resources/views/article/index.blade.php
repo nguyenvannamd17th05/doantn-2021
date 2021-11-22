@@ -74,7 +74,7 @@
                                                 <a class="badge {{$article->getStatus($article->a_active)['class']}}" href="{{route('admin.article.action',['active',$article->id])}}">{{$article->getStatus($article->a_active)['name']}}</a>
                                             </td>
                                             <td>
-                                                {{$article->created_at}}
+                                                {{$article->created_at->format('d-m-Y')}}
                                             </td>
                                             <td>
                                                 <a class="btn btn-default" href="{{route('admin.article.edit',$article->id)}}" ><i class="fas fa-pen" ></i> Edit</a>
@@ -86,6 +86,10 @@
 
                             </tbody>
                         </table>
+                        <div class="row">
+                            {{ $articles->links()}}
+
+                        </div>
                     </div>
 
                 </div>

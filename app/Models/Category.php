@@ -26,4 +26,7 @@ class Category extends Model
     public function getStatus(){
         return Arr::get($this->status,$this->c_active,'[N\A]');
     }
+//    public function product(){
+//        return $this->hasMany(Product::class);
+//    }
 }

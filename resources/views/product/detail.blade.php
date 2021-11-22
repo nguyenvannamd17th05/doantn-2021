@@ -62,7 +62,7 @@
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
                             <li class="home">
-                                <a href="{{url()->previous() }}">{{$productDetail->category->c_name}}</a>
+                                <a href="{{route('cate.listProduct',[$productDetail->category->c_slug,$productDetail->cate_id]) }}">{{$productDetail->category->c_name}}</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
                             <li class="category3"><span>{{$productDetail->pro_name}}</span></li>
@@ -249,6 +249,29 @@
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="component_list_rating">
+                            @if ( isset($ratings))
+                                @foreach($ratings as $rating)
+                                    <div class="rating_item" style="margin: 10px 0">
+                                        <div>
+                                            <span style="color: #333;font-weight: bold;text-transform: capitalize;">{{ isset($rating->user->name) ? $rating->user->name : '[N\A]' }}</span>
+                                            <a href="" style="color: #2ba832"> <i class="fa fa-check-circle-o"></i> Đã mua hàng tại website</a>
+                                        </div>
+                                        <p style="margin-bottom: 0">
+                                                <span class="pro-rating">
+                                                    @for($i =1 ; $i<=5 ;$i ++)
+                                                        <i class="fa fa-star {{ $i<= $rating->ra_number ? 'active' : '' }}"></i>
+                                                    @endfor
+                                                </span>
+                                            <span>{{ $rating->ra_content }}</span>
+                                        </p>
+                                        <div>
+                                            <span><i class="fa fa-clock-o"></i> {{ $rating->created_at }}</span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

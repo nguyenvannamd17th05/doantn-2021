@@ -34,9 +34,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tên khách hàng</th>
-                                <th scope="col">Số điện thoại</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Số điện thoại</th>
+
+
                             </tr>
                             </thead>
                             <tbody>
@@ -44,21 +45,18 @@
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td>{{$user->phone}}</td>
+
                                     <td>{{$user->email}}</td>
-                                    @if($user->active==1)
-                                        <td>Đã kích hoạt</td>
-                                    @else
-                                        <td>
-                                        Chưa kích hoạt
-                                        </td>
-                                        @endif
+                                    <td>{{$user->phone}}</td>
+
                                 </tr>
-
-
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="row">
+                            {{ $users->links()}}
+{{--                            {{ $users->appends($_GET)->links() }}--}}
+                        </div>
                     </div>
 
                 </div>

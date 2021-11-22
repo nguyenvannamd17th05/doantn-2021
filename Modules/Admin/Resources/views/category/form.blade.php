@@ -26,12 +26,5 @@
         <label for="icon" class="form-label">Meta Description</label>
         <input type="text" class="form-control" name="c_desc_seo" value="{{old('c_desc_seo',isset($category->c_desc_seo)?$category->c_desc_seo:'')}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Meta description">
     </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input type="checkbox" name="check" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Nổi bật</label>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success">Lưu thông tin</button>
 </form>

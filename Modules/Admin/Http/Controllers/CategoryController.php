@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories=Category::select('id','c_name','c_active','c_title_seo')->get();
+        $categories=Category::select('id','c_name','c_active','c_title_seo')->paginate(10);
         return view('admin::category.index',compact('categories'));
     }
     public function create(){
@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function store(RequestCategory $requestCategory){
 
         $this->insertOrUpdate($requestCategory);
-        return redirect(route('admin.cate.index'));
+        return redirect(route('admin.cate.index'))->with('success','Thêm mới thành công!');
     }
     public function edit($id){
         $category=Category::find($id);
@@ -33,7 +33,7 @@ class CategoryController extends Controller
     }
     public function update(RequestCategory $requestCategory,$id){
         $this->insertOrUpdate($requestCategory,$id);
-        return redirect(route('admin.cate.index'));
+        return redirect(route('admin.cate.index'))->with('success','Cập nhật thành công!');;
     }
     public function insertOrUpdate($requestCategory,$id=''){
         $code=1;
@@ -51,8 +51,7 @@ class CategoryController extends Controller
             $category->save();
         }catch (\Exception $exception){
             $code=0;
-            Log::error("[Error inserorUpdate Categories]".$exception->getMessage());
-
+            Log::error("[Error insertOrUpdate Categories]".$exception->getMessage());
         }
         return $code;
     }
@@ -70,7 +69,7 @@ class CategoryController extends Controller
                     break;
             }
         }
-        return redirect()->back();
+        return redirect()->back()->with('success','Thao tác thành công!');;
     }
 
 }

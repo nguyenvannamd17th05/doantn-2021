@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 
 /*
@@ -37,6 +38,8 @@ Route::get('/',[HomeController::class,'index'])->name('home.index');
 Route::get('/danh-muc/{slug}-{id}',[CategoryController::class,'listProduct'])->name('cate.listProduct');
 Route::get('/san-pham/{slug}-{id}',[ProductController::class,'detailProduct'])->name('product.detail');
 
+Route::get('/bai-viet',[ArticleController::class,'listArticle'])->name('article.listArticle');
+Route::get('/bai-viet/{slug}-{id}',[ArticleController::class,'detailArticle'])->name('article.detail');
 Route::group(['prefix'=>'shopping'],function(){
    Route::get('/add/{id}',[CartController::class,'addProduct'])->name('cart.addProduct');
    Route::get('/delete/{id}',[CartController::class,'deleteProduct'])->name('cart.delProduct');

@@ -46,7 +46,7 @@
                                     <input type="submit" class="button" name="login" value="Đăng nhập">
                                 </div>
                                 <label for="rememberme" class="inline">
-                                    <input name="rememberme" type="checkbox" id="rememberme" value="forever"> Remember me </label>
+                                    <p > <a href="{{route('get.register')}}">Chưa có tài khoản?</a></p></label>
                             </div>
                         </form>
                     </div>

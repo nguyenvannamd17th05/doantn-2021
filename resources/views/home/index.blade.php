@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    @include('components.silder  ')
+    @include('components.silder')
     <!-- product section start -->
     <div class="our-product-area">
         <div class="container">
@@ -29,6 +29,12 @@
                                                     <!-- single-product start -->
                                                     <div class="single-product first-sale">
                                                         <div class="product-img">
+                                                            @if ( $productHot->pro_number == 0)
+                                                                <span style="position: absolute;background: #e91e63;color: white;padding: 2px 6px;border-radius: 5px;font-size: 10px;">Tạm hết hàng</span>
+                                                            @endif
+                                                            @if ($productHot->pro_sale)
+                                                                <span style="position: absolute;font-size:10px;background-image: linear-gradient(-90deg,#ec1f1f 0%,#ff9c00 100%);border-radius: 10px;padding: 3px 7px;color: white;right: 0">{{ $productHot->pro_sale }}%</span>
+                                                            @endif
                                                             <a href="{{route('product.detail',[$productHot->pro_slug,$productHot->id])}}">
                                                                 <img class="primary-image" src="{{asset(pare_url_file($productHot->pro_image,'product'))}}" alt="" />
                                                                 <img class="secondary-image" src="{{asset(pare_url_file($productHot->pro_image,'product'))}}" alt="" />
@@ -54,7 +60,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="price-box">
-                                                                <span class="new-price">{{number_format($productHot->pro_price,0,',','.')}}</span>
+                                                                <span class="new-price">{{number_format($productHot->pro_price,0,',','.')}}đ</span>
                                                             </div>
                                                         </div>
                                                         <div class="product-content">

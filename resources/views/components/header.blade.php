@@ -25,7 +25,7 @@
                                     @endif
                                 </ul>
                             </li>
-                            <li class="expand"><a href="">Tin tức</a>
+                            <li class="expand"><a href="{{route('article.listArticle')}}" title="Tin tức">Tin tức</a>
 
                             </li>
                             <li class="expand"><a href="">Giới thiệu</a>
@@ -240,7 +240,7 @@
                                     <p class="total">Tổng tiền: <span class="amount">{{\Cart::subtotal(0,',','.')}}</span></p>
                                     @endif
                                     <p class="buttons">
-                                        <a href="checkout.html" class="button">Checkout</a>
+                                        <a href="{{route('cart.pay')}}" class="button">Checkout</a>
                                     </p>
                                 </div>
                             </div>

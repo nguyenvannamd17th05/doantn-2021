@@ -21,7 +21,7 @@ class HomeController extends FrontendController
         ])->limit(5)->get();
         $articles=Article::where([
             'a_active'=>Article::STATUS_PUBLIC,
-            ])->orderBy('id','DESC')->limit(6)->get();
+            ])->orderBy('id','DESC')->limit(3)->get();
 
         return view('home.index',compact('productsHot','articles'));
     }

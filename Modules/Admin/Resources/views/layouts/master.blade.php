@@ -20,11 +20,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
     @include('admin::layouts.header')
-    <!-- Main Sidebar Container -->
+
+
     @include('admin::layouts.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
+
+
     @yield('content')
     <!-- /.content-wrapper -->
 

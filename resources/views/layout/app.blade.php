@@ -97,6 +97,17 @@
 <!-- start home slider -->
 
 <!-- end home slider -->
+
+@if(session()->has('warning'))
+    <div class="alert alert-warning" style="position: fixed;right: 20px;top: 20px;left: 50%;transform: translateX(-50%);z-index: 9999999999999;">
+        <strong>Cảnh báo! </strong>{{ session()->get('warning') }}
+    </div>
+@endif
+@if(session()->has('success'))
+    <div class="alert alert-success" style="position: fixed;right: 20px;top: 20px;left: 50%;transform: translateX(-50%);z-index: 9999999999999;">
+        <strong>Thành công! </strong>{{ session()->get('success') }}
+    </div>
+@endif
 @yield('content')
 
 <!-- Brand Logo Area Start -->

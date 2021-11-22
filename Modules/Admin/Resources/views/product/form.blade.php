@@ -67,8 +67,12 @@
                 @endif
             </div>
             <div class="form-group">
+                <label for="icon" class="form-label">Số lượng: </label>
+                <input type="number" value="{{old('pro_sale',isset($product->pro_number)?$product->pro_number:'0')}}" name="pro_number" class="form-control"  placeholder="Số lượng">
+            </div>
+            <div class="form-group">
                 <label for="icon" class="form-label">Khuyến mãi(%): </label>
-                <input type="number" value="{{old('pro_sale',isset($product->pro_sale)?$product->pro_sale:'')}}" name="pro_sale" class="form-control" value="0" placeholder="XX%">
+                <input type="number" value="{{old('pro_sale',isset($product->pro_sale)?$product->pro_sale:'0')}}" name="pro_sale" class="form-control"  placeholder="XX%">
             </div>
             <div class="form-group">
                 <img id="imgOut" src="{{isset($product->pro_image)?asset(pare_url_file($product->pro_image,'product')):asset('images/default.jpg')}}" style="width: 100%;height: 300px;" alt="">

@@ -13,10 +13,16 @@ use Illuminate\Support\Str;
 class CartController extends FrontendController
 {
     public function addProduct(Request $request,$id){
-        $product=Product::select('pro_name','pro_price','id','pro_image','pro_sale')->find($id);
+        $product=Product::select('pro_name','pro_price','id','pro_image','pro_sale','pro_number')->find($id);
+        if(!$product)
+            return redirect()->route('home.index');
+
         $price=$product->pro_price;
         if($product->pro_sale){
             $price= $price * (100-$product->pro_sale)/100;
+        }
+        if($product->pro_number==0){
+            return redirect()->back()->with('warning','Sản phẩm đang tạm hết hàng!');
         }
         \Cart::add([
             'id'=>$id,
@@ -29,7 +35,7 @@ class CartController extends FrontendController
                 'price_old'=>$product->pro_price,
             ],
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success','Mua hàng thành công!');
     }
     public function deleteProduct($key){
         \Cart::remove($key);
