@@ -33,6 +33,12 @@
             <div class="col-sm-9">
                 <div class="article_content" style="margin-bottom: 20px ">
                     <h1>{{ $articleDetail->a_name }}</h1>
+                    <div class="userdetail" style="display: block;overflow: hidden;margin: 0 10px 0 0; padding: 15px 0;">
+                        <a href="" style="display: inline-block;font-size: 12px;font-weight: 600;color: #288ad6;vertical-align: middle;overflow: hidden; margin: 0;">
+                            {{isset($articleDetail->admin->name)?$articleDetail->admin->name:'[N\A]'}}
+                        </a>
+                        <span style="display: inline-block;font-size: 12px;color: #999;vertical-align: middle;margin: -2px 5px 0;cursor: pointer;">{{time_elapsed_string($articleDetail->created_at)}}</span>
+                    </div>
                     <p style="font-weight: 500;color: #333">{{ $articleDetail->a_desc}}</p>
                     <div>
                         {!! $articleDetail->a_content !!}
@@ -44,7 +50,7 @@
             <div class="col-sm-3">
                 <h5>Bài viết nổi bật</h5>
                 <div class="list_article_hot">
-{{--                    @include('components.article_hot')--}}
+                    @include('components.article_hot')
                 </div>
             </div>
         </div>

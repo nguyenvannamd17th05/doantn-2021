@@ -192,26 +192,28 @@
                             <h3>Đánh giá sản phẩm</h3>
                             <div class="component_rating_content" style="display: flex;align-items: center;border-radius: 5px;border:1px solid #dedede">
                                 <div class="rating_item" style="width: 20%;position: relative">
-                                    <span class="fa fa-star" style="font-size: 100px;display: block;color: #ff9705;margin: 0 auto;text-align: center;"></span><b style="position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color: white;font-size: 20px;">2.5</b>
+                                    <span class="fa fa-star" style="font-size: 100px;display: block;color: #ff9705;margin: 0 auto;text-align: center;"></span><b style="position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);color: white;font-size: 20px;">{{$rateDetail}}</b>
                                 </div>
                                 <div class="list_rating" style="width: 60%;padding: 20px;">
-                                        @for($i=1;$i<=5;$i++)
+                                    @foreach($arrayRatings as $key => $arrayRating)
+                                        <?php
+                                            $itemPercent=round(($arrayRating['total']/$productDetail->pro_total_rating)*100,0);
+                                        ?>
                                         <div class="item_rating" style="display:flex; align-items: center;">
                                                 <div style="width: 10%;font-size: 14px">
-                                                    {{$i}}<span class="fa fa-star"></span>
+                                                    {{$key}}<span class="fa fa-star"></span>
                                                 </div>
                                                 <div style="width: 70%;margin:0 20px">
                                                     <span style="width: 100%;height: 8px;display: block;border: 1px solid #dedede;border-radius: 5px;background-color: #dedede">
-                                                        <b style="width: 30%;background-color:#f25800;display: block;border-radius: 5px;height: 100%;">
-
+                                                        <b style="width: {{$itemPercent}}%;background-color:#f25800;display: block;border-radius: 5px;height: 100%;">
                                                         </b>
                                                     </span>
                                                 </div>
                                                 <div style="width: 20%">
-                                                    <a href="" style="">290 đánh giá </a>
+                                                    <a href="" style="">{{$arrayRating['total']}} đánh giá ({{$itemPercent}}%) </a>
                                                 </div>
                                         </div>
-                                        @endfor
+                                        @endforeach
                                 </div>
 
                                 <div style="width: 20%">
@@ -236,6 +238,7 @@
                                             <i class="fa fa-star" data-key="{{$i}}">
                                             </i>
                                         @endfor
+
                                     </span>
                                     <span class="list_text">
                                     </span>
@@ -256,10 +259,13 @@
                                     <div class="rating_item" style="margin: 10px 0">
                                         <div>
                                             <span style="color: #333;font-weight: bold;text-transform: capitalize;">{{ isset($rating->user->name) ? $rating->user->name : '[N\A]' }}</span>
-                                            <a href="" style="color: #2ba832"> <i class="fa fa-check-circle-o"></i> Đã mua hàng tại website</a>
+
+                                            <a href="" style="color: #2ba832"> <i class="fa fa-check-circle-o"></i>{{($rating->user->total_pay)>0?'Đã mua hàng tại website' : ''}} </a>
                                         </div>
                                         <p style="margin-bottom: 0">
                                                 <span class="pro-rating">
+
+
                                                     @for($i =1 ; $i<=5 ;$i ++)
                                                         <i class="fa fa-star {{ $i<= $rating->ra_number ? 'active' : '' }}"></i>
                                                     @endfor
@@ -267,7 +273,7 @@
                                             <span>{{ $rating->ra_content }}</span>
                                         </p>
                                         <div>
-                                            <span><i class="fa fa-clock-o"></i> {{ $rating->created_at }}</span>
+                                            <span><i class="fa fa-clock-o"></i> {{ time_elapsed_string($rating->created_at) }}</span>
                                         </div>
                                     </div>
                                 @endforeach

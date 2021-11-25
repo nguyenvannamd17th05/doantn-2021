@@ -29,7 +29,7 @@
                 <div class="col-sm-3">
                     <h5>Bài viết nổi bật</h5>
                     <div class="list_article_hot">
-{{--                        @include('components.article_hot')--}}
+                            @include('components.article_hot')
                     </div>
                 </div>
             </div>

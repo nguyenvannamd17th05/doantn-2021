@@ -17,7 +17,7 @@ class   AdminArticleController extends Controller
         $articles=Article::whereRaw(1);
         if($request->name)
             $articles->where('a_name','like','%'.$request->name.'%');
-        $articles=$articles->paginate(10);
+        $articles=$articles->orderBy('id','desc')->paginate(5);
         return view('admin::article.index',compact('articles'));
     }
     public function create()
@@ -49,6 +49,7 @@ class   AdminArticleController extends Controller
             $article->a_name=$requestArticle->a_name;
             $article->a_slug=Str::slug($requestArticle->a_name);
             $article->a_desc=$requestArticle->a_desc;
+            $article->a_author_id=get_data_user('admins','id');
             $article->a_content=$requestArticle->a_content;
             $article->a_title_seo=$requestArticle->a_title_seo ? $requestArticle->a_title_seo : $requestArticle->a_name;
             $article->a_desc_seo=$requestArticle->a_desc_seo?$requestArticle->a_desc_seo:$requestArticle->a_desc;
@@ -76,6 +77,10 @@ class   AdminArticleController extends Controller
                     break;
                 case 'active':
                     $article->a_active=!($article->a_active) ;
+                    $article->save();
+                    break;
+                case 'hot':
+                    $article->a_hot=!($article->a_hot) ;
                     $article->save();
                     break;
             }

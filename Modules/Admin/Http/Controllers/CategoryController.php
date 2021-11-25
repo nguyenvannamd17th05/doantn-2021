@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories=Category::select('id','c_name','c_active','c_title_seo')->paginate(10);
+        $categories=Category::select('id','c_name','c_active','c_title_seo','c_home')->paginate(10);
         return view('admin::category.index',compact('categories'));
     }
     public function create(){
@@ -62,14 +62,21 @@ class CategoryController extends Controller
             {
                 case 'delete':
                     $category->delete();
+                    $msg='Xóa dữ liệu thành công!';
                     break;
                 case 'active':
                     $category->c_active=!($category->c_active) ;
+                    $msg='Kích hoạt thành công!';
+                    $category->save();
+                    break;
+                case 'home':
+                    $category->c_home=!($category->c_home) ;
+                    $msg='Cập nhật thành công!';
                     $category->save();
                     break;
             }
         }
-        return redirect()->back()->with('success','Thao tác thành công!');;
+        return redirect()->back()->with('success',$msg);;
     }
 
 }

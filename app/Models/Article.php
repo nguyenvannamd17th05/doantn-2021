@@ -35,8 +35,11 @@ class Article extends Model
     public function getStatus(){
         return Arr::get($this->status,$this->a_active,'[N\A]');
     }
-//    public function getHot()
-//    {
-//        return Arr::get($this->hot,$this->a_hot,'[N\A]');
-//    }
+    public function getHot()
+    {
+        return Arr::get($this->hot,$this->a_hot,'[N\A]');
+    }
+    public function admin(){
+        return $this->belongsTo(Admin::class,'a_author_id');
+    }
 }

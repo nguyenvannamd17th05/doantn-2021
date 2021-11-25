@@ -39,7 +39,7 @@ class CartController extends FrontendController
     }
     public function deleteProduct($key){
         \Cart::remove($key);
-        return redirect()->back();
+        return redirect()->back()->with('success','Xóa sản phẩm thành công!');
     }
     public function getListCart(){
         $products=\Cart::content();
@@ -69,7 +69,7 @@ class CartController extends FrontendController
             }
         }
         \Cart::destroy();
-        return redirect('/');
+        return redirect('/')->with('success','Đặt hàng thành công');
     }
     public function getPay(){
         $products=\Cart::content();

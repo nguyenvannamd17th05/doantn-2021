@@ -20,7 +20,7 @@ class ProductController extends Controller
             $products->where('pro_name','like','%'.$request->name.'%');
         if($request->cate)
             $products->where('cate_id',$request->cate);
-        $products=$products->orderByDesc('id')->paginate(10);
+        $products=$products->orderByDesc('id')->paginate(5);
 
         $categories=$this->getCategory();
         return view('admin::product.index',compact('products','categories'));

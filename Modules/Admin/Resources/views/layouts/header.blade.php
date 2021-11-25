@@ -18,7 +18,7 @@
     <ul class="navbar-nav ml-auto">
         @if(session()->has('success'))
             <div class="alert alert-default-primary" style="margin-top: 20px">
-                {{ session()->get('success') }}
+                <strong>Thành công! </strong>{{ session()->get('success') }}
             </div>
         @endif
     </ul>

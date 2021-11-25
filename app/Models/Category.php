@@ -13,6 +13,7 @@ class Category extends Model
     use HasFactory;
     const STATUS_PUBLIC=1;
     const STATUS_PRIVATE=0;
+    const HOME=1;
     protected $status=[
         1=>[
             'name'=>'Public',
@@ -23,10 +24,23 @@ class Category extends Model
             'class'=>'badge-info'
         ]
     ];
+    protected $home=[
+        1=>[
+            'name'=>'Hot',
+            'class'=>'badge-success'
+        ],
+        0=>[
+            'name'=>'Private',
+            'class'=>'badge-info'
+        ]
+    ];
     public function getStatus(){
         return Arr::get($this->status,$this->c_active,'[N\A]');
     }
-//    public function product(){
-//        return $this->hasMany(Product::class);
-//    }
+    public function getHome(){
+        return Arr::get($this->home,$this->c_home,'[N\A]');
+    }
+    public function product(){
+        return $this->hasMany(Product::class,'cate_id');
+    }
 }

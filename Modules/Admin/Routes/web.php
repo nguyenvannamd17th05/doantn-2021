@@ -8,6 +8,7 @@ use Modules\Admin\Http\Controllers\SliderController;
 use Modules\Admin\Http\Controllers\TransactionController;
 use Modules\Admin\Http\Controllers\RatingController;
 use Modules\Admin\Http\Controllers\ContactController;
+use Modules\Admin\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +19,13 @@ use Modules\Admin\Http\Controllers\ContactController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => 'auth'], function(){
+    Route::get('/login',[AdminController::class,'getLogin'])->name('admin.login');
+    Route::post('/login',[AdminController::class,'postLogin']);
+});
+Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
+    Route::get('/',[AdminController::class, 'index'])->name('admin.index');
 
-Route::prefix('admin')->group(function() {
-    Route::get('/', 'AdminController@index')->name('admin.index');
     Route::group(['prefix' => 'category'], function(){
         Route::get('/', [CategoryController::class, 'index'])->name('admin.cate.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('admin.cate.create');

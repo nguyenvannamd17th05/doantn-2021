@@ -33,6 +33,10 @@
                                 Thông tin đơn hàng <div class="pull-right"><small><a class="afix-1" href="{{route('cart.listCart')}}">Edit Cart</a></small></div>
                             </div>
                             <div class="panel-body">
+                                <?php
+                                    $total=0;
+                                    $sale=0
+                                ?>
                                 @foreach($products as $product)
                                 <div class="form-group">
                                     <div class="col-sm-3 col-xs-3">
@@ -43,26 +47,34 @@
                                         <div class="col-xs-12"><small>Số lượng:<span> x{{$product->qty}}</span></small></div>
                                     </div>
                                     <div class="col-sm-3 col-xs-3 text-right">
-                                        <h6>{{number_format($product->price,0,',','.')}}<span> VNđ</span></h6>
+                                        <h6>{{number_format($product->options->price_old,0,',','.')}}<span> VNđ</span></h6>
+                                        <br>
+                                        <h6>Giảm giá: {{$product->options->sale}}%</h6>
                                     </div>
                                 </div>
                                 <div class="form-group"><hr /></div>
+                                    <?php
+                                        $total+=$product->options->price_old*$product->qty;
+                                        $sale+=$product->options->price_old*($product->options->sale)*$product->qty/100;
+                                        ?>
                                 @endforeach
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <strong>Tổng tiền: </strong>
-                                        <div class="pull-right"><span>{{\Cart::subtotal(0,',','.')}}</span><span> VNđ</span></div>
+
+                                        <div class="pull-right"><span>{{number_format($total,0,',','.')}}</span><span> VNĐ</span></div>
                                     </div>
+
                                     <div class="col-xs-12">
-                                        <small>Shipping</small>
-                                        <div class="pull-right"><span>-</span></div>
+                                        <small>Giảm giá:    </small>
+                                        <div class="pull-right"><span>-{{number_format($sale,0,',','.')}}</span><span> VNĐ</span></div>
                                     </div>
                                 </div>
                                 <div class="form-group"><hr /></div>
                                 <div class="form-group">
                                     <div class="col-xs-12">
-                                        <strong>Order Total</strong>
-                                        <div class="pull-right"><span>$</span><span>150.00</span></div>
+                                        <strong>Tổng đơn hàng</strong>
+                                        <div class="pull-right"><span>{{\Cart::subtotal(0,',','.')}}</span><span> VNĐ</span></div>
                                     </div>
                                 </div>
                             </div>

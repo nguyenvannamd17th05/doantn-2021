@@ -37,7 +37,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Tên danh mục</th>
                                 <th scope="col">Title Seo</th>
-
+                                <th scope="col">Nổi bật</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Thao tác</th>
                             </tr>
@@ -49,6 +49,9 @@
                                     <th scope="row">{{$category->id}}</th>
                                     <td>{{$category->c_name}}</td>
                                     <td>{{$category->c_title_seo}}</td>
+                                    <td>
+                                        <a class="badge {{$category->getHome($category->c_home)['class']}}" href="{{route('admin.cate.action',['home',$category->id])}}">{{$category->getHome($category->c_home)['name']}}</a>
+                                    </td>
                                     <td>
                                     <a class="badge {{$category->getStatus($category->c_active)['class']}}" href="{{route('admin.cate.action',['active',$category->id])}}">{{$category->getStatus($category->c_active)['name']}}</a>
                                     </td>

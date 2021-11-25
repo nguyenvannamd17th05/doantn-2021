@@ -219,16 +219,16 @@
                                     <a href="#"><span class="cart-quantity">{{\Cart::count()}}</span></a>
                                 </div>
                                 <div class="restrain small-cart-content">
-                                    <ul class="cart-list">
+                                    <ul class="cart-list" >
                                         <?php $productsCart=\Cart::content();   ?>
                                         @if(isset($productsCart))
-                                            @foreach($productsCart as $productCart)
-                                        <li>
+                                            @foreach($productsCart as $key=> $productCart)
+                                        <li style="list-style-type: none">
                                             <a class="sm-cart-product" href="{{route('product.detail',[\Illuminate\Support\Str::slug($productCart->name),$productCart->id])}}">
                                                 <img src="{{asset(pare_url_file($productCart->options->image,'product'))}}" alt="">
                                             </a>
                                             <div class="small-cart-detail">
-                                                <a class="remove" href="#"><i class="fa fa-times-circle"></i></a>
+                                                <a class="remove" href="{{route('cart.delProduct',$key)}}"><i class="fa fa-times-circle"></i></a>
                                                 <a href="{{route('cart.listCart')}}" class="edit-btn"><img src="{{asset('home/img/btn_edit.gif')}}" alt="Edit Button" /></a>
                                                 <a class="small-cart-name" href="{{route('product.detail',[\Illuminate\Support\Str::slug($productCart->name),$productCart->id])}}">{{$productCart->name}}</a>
                                                 <span class="quantitys"><strong>{{$productCart->qty}}</strong>x<span>{{number_format($productCart->price,0,',','.')}}đ</span></span>

@@ -13,10 +13,13 @@ class ArticleController extends FrontendController
     }
 
     public function listArticle(){
-        $articles=Article::paginate(2);
-//        $articleHot = Article::where('a_hot',Article::HOT)->get();
+        $articles=Article::where('a_active',Article::STATUS_PUBLIC)->orderBy("id","DESC")->paginate(5);
+        $articleHot = Article::where([
+            'a_hot'=>Article::HOT,
+            'a_active'=>Article::STATUS_PUBLIC
+            ])->get();
 
-        return view('article.index',compact('articles'));
+        return view('article.index',compact('articles','articleHot'));
     }
     public function detailArticle(Request $request)
     {
@@ -27,13 +30,15 @@ class ArticleController extends FrontendController
         if ($id)
         {
             $articleDetail = Article::find($id);
-            $articles = Article::orderBy("id","DESC")->paginate(10);
-//            $articleHot = Article::where('a_hot',Article::HOT)->get();
-
+            $articles = Article::where('a_active',Article::STATUS_PUBLIC)->whereNotIn('id', [$id])->orderBy("id","DESC")->paginate(3);
+            $articleHot = Article::where([
+                'a_hot'=>Article::HOT,
+                'a_active'=>Article::STATUS_PUBLIC
+            ])->get();
             $viewData = [
                 'articles' => $articles,
                 'articleDetail' => $articleDetail,
-//                'articleHot' => $articleHot
+                'articleHot' => $articleHot
             ];
 
             return view('article.detail',$viewData);

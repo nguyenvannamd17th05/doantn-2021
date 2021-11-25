@@ -81,15 +81,10 @@
                 <label for="icon" class="form-label">Hình ảnh: </label>
                <input type="file" name="pro_image" id="imgInp" class="form-control-file">
             </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input type="checkbox" name="check" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Nổi bật</label>
-                </div>
-            </div>
+
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success">Lưu thông tin</button>
 </form>
 @section('script')
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>

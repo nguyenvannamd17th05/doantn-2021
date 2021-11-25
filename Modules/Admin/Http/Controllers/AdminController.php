@@ -10,14 +10,15 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
 
     public function index()
     {
-        $ratings=Rating::latest()->limit(10)->get();
-        $contacts=Contact::latest()->limit(10)->get();
+        $ratings=Rating::latest()->limit(5)->get();
+        $contacts=Contact::latest()->limit(5)->get();
         $moneyByDay=Transaction::whereDay('updated_at',date('d'))->where('tr_status',Transaction::STATUS_DONE)->sum('tr_total');
         $moneyByMonth=Transaction::whereMonth('updated_at',date('m'))->where('tr_status',Transaction::STATUS_DONE)->sum('tr_total');
         $transactionByDay=Transaction::whereDay('created_at',date('d'))->count();
@@ -25,7 +26,16 @@ class AdminController extends Controller
         $transactionNews=Transaction::limit(5)->orderByDesc('id')->get();
         return view('admin::index',compact('contacts','ratings','moneyByDay','moneyByMonth','transactionByDay','userByMonth','transactionNews'));
     }
-
+    public function getLogin(){
+        return view('admin::auth.login');
+    }
+    public function postLogin(Request $request){
+        $data=$request->only('email','password');
+        if(Auth::guard('admins')->attempt($data)){
+            return redirect()->route('admin.index');
+        }
+        return redirect()->back();
+    }
 
 
 }

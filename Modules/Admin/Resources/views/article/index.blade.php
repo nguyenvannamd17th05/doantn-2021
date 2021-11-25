@@ -48,12 +48,11 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col" style="width: 200px">Tên bài viết</th>
-                                <th style="width: 300px" scope="col">Mô tả</th>
+                                <th scope="col" >Tên bài viết</th>
                                 <th scope="col">Hình ảnh</th>
                                 <th scope="col">Title Seo</th>
                                 <th scope="col">Trạng thái</th>
-                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Nổi bật</th>
                                 <th scope="col">Thao tác</th>
                             </tr>
                             </thead>
@@ -64,8 +63,12 @@
                                             <th scope="row">{{$article->id}}</th>
                                             <td>
                                                 {{$article->a_name}}
+                                                <ul style="padding-left: 15px;">
+                                                    <li><span>Tác giả: </span><span> {{isset($article->admin->name)?$article->admin->name:'[N\A]'}}</span></li>
+                                                    <li><span>Tạo: </span><span> {{time_elapsed_string($article->created_at)}}</span></li>
+                                                </ul>
                                             </td>
-                                            <td>{{$article->a_desc}}</td>
+
                                             <td>
                                                 <img src="{{asset(pare_url_file($article->a_avatar,'article'))}}" style="width: 80px;height: 80px">
                                             </td>
@@ -74,7 +77,8 @@
                                                 <a class="badge {{$article->getStatus($article->a_active)['class']}}" href="{{route('admin.article.action',['active',$article->id])}}">{{$article->getStatus($article->a_active)['name']}}</a>
                                             </td>
                                             <td>
-                                                {{$article->created_at->format('d-m-Y')}}
+                                                <a class="badge {{$article->getHot($article->a_hot)['class']}}" href="{{route('admin.article.action',['hot',$article->id])}}">{{$article->getHot($article->a_hot)['name']}}</a>
+
                                             </td>
                                             <td>
                                                 <a class="btn btn-default" href="{{route('admin.article.edit',$article->id)}}" ><i class="fas fa-pen" ></i> Edit</a>
