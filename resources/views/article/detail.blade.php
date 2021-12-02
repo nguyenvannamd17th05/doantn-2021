@@ -40,7 +40,7 @@
                         <span style="display: inline-block;font-size: 12px;color: #999;vertical-align: middle;margin: -2px 5px 0;cursor: pointer;">{{time_elapsed_string($articleDetail->created_at)}}</span>
                     </div>
                     <p style="font-weight: 500;color: #333">{{ $articleDetail->a_desc}}</p>
-                    <div>
+                    <div style="text-align: justify">
                         {!! $articleDetail->a_content !!}
                     </div>
                 </div>

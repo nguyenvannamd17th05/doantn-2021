@@ -146,15 +146,23 @@
                                 <div class="product-desc">
                                     <p>{{$productDetail->pro_desc}}</p>
                                 </div>
-                                <p class="availability in-stock">Tình trạng: <span>Còn hàng</span></p>
+                                <p class="availability in-stock">Tình trạng:
+                                    @if($productDetail->pro_number>0)
+                                    <span>Còn hàng</span>
+                                    @else
+                                        <span>Tạm hết hàng</span>
+                                    @endif
+                                </p>
                                 <div class="actions-e">
                                     <div class="action-buttons-single">
+                                        <form action="{{route('cart.addProduct',$productDetail->id)}}" method="GET">
+                                            @csrf
                                         <div class="inputx-content">
                                             <label for="qty">Quantity:</label>
-                                            <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
+                                            <input type="number" name="qty" id="qty" min="1" max="{{$productDetail->pro_number}}" maxlength="12" value="1" title="Qty" class="input-text qty">
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="{{route('cart.addProduct',$productDetail->id)}}">Add to cart</a>
+                                            <button type="submit">Add to cart</button>
                                         </div>
                                         <div class="add-to-links">
                                             <div class="add-to-wishlist">
@@ -164,6 +172,7 @@
                                                 <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="singl-share">
@@ -179,7 +188,7 @@
                     <!-- Nav tabs -->
                     <ul class="details-tab">
                         <li class="active"><a href="#home" data-toggle="tab">Description</a></li>
-                        <li class=""><a href="#messages" data-toggle="tab"> Review (1)</a></li>
+
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
@@ -217,7 +226,11 @@
                                 </div>
 
                                 <div style="width: 20%">
-                                    <a href="" class="js_rating_action" style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Gửi đánh giá</a>
+                                    @if (get_data_user('web'))
+                                        <a href="#" class="js_rating_action" style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Gủi đánh giá của bạn</a>
+                                    @else
+                                        <a href="{{ route('get.login') }}"  style="width: 200px;background: #288ad6;padding: 10px;color: white;border-radius: 5px;">Đăng nhập để đánh giá SP</a>
+                                    @endif
                                 </div>
 
                         </div>
@@ -278,6 +291,9 @@
                                     </div>
                                 @endforeach
                             @endif
+                        </div>
+                        <div class="row">
+                            {!! $ratings->links() !!}
                         </div>
                     </div>
                 </div>
@@ -340,9 +356,10 @@
                             r_content: content
                         }
                     }).done(function (result){
-                        console.log(result)
+
                         if (result.code == 1)
                         {
+                            location.reload();
                             Swal.fire(
                                 'Thành công!',
                                 'Cảm ơn về đánh giá của bạn!',

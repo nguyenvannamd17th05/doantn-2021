@@ -271,7 +271,7 @@
                             <a href="#"><i class="fa fa-align-right"></i></a>
                             <ul class="restrain language">
                                 @if(Auth::check())
-                                <li><a href="login.html">Quản lý</a></li>
+                                <li><a href="{{route('user.index')}}">Quản lý</a></li>
                                 <li><a href="wishlist.html">Yêu thích</a></li>
                                 <li><a href="cart.html">Giỏ hàng</a></li>
                                 <li><a href="{{route('get.logout')}}">Thoát</a></li>

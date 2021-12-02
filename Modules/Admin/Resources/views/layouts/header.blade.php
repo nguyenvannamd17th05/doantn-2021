@@ -21,6 +21,11 @@
                 <strong>Thành công! </strong>{{ session()->get('success') }}
             </div>
         @endif
+        @if(session()->has('danger'))
+                <div class="alert alert-danger" style="margin-top: 20px">
+                    <strong>Thất bại! </strong>{{ session()->get('danger') }}
+                </div>
+            @endif
     </ul>
 </nav>
 <!-- /.navbar -->

@@ -22,28 +22,30 @@
                 <?php $i=1; ?>
                 @foreach($products as $key => $product)
                 <tr>
-                    <th scope="row">{{$i}}</th>
-                    <td><a href="">{{$product->name}}</a></td>
-                    <td>
-                        <img style="width: 80px;height: 70px" src="{{asset(pare_url_file($product->options->image,'product'))}}">
-                    </td>
-                    <td>
-                        <ul>
-                            <li><span><i class="fa fa-dollar">: </i></span><span> {{number_format($product->options->price_old,0,',','.')}}đ</span></li>
-                            <li><span><i class="fa fa-tag">: </i></span><span> {{$product->options->sale}}%</span></li>
-                        </ul>
+                    <form action="{{ route('cart.update',$product->rowId) }}">
+                        <th scope="row">{{$i}}</th>
+                        <td><a href="">{{$product->name}}</a></td>
+                        <td>
+                            <img style="width: 80px;height: 70px" src="{{asset(pare_url_file($product->options->image,'product'))}}">
+                        </td>
+                        <td>
+                            <ul>
+                                <li><span><i class="fa fa-dollar">: </i></span><span> {{number_format($product->options->price_old,0,',','.')}}đ</span></li>
+                                <li><span><i class="fa fa-tag">: </i></span><span> {{$product->options->sale}}%</span></li>
+                            </ul>
 
 
-                    </td>
-                    <td>{{$product->qty}}</td>
-                    <td>
+                        </td>
+                        <td> <input type="number" min="1" max="10" class="form-control" style="width: 100px" value="{{ $product->qty }}" name="qty"></td>
+                        <td>
 
-                        {{number_format($product->qty*$product->price,0,',','.')}}đ</td>
-                    <td>
-                        <a href=""><i class="fa fa-pencil"></i> Cập nhật</a>
-                        <br>
-                        <a href="{{route('cart.delProduct',$key)}}"><i class="fa fa-times"></i> Xóa</a>
-                    </td>
+                            {{number_format($product->qty*$product->price,0,',','.')}}đ</td>
+                        <td>
+                            <button type="submit" class="btn btn-xs btn-success"><i class="fa fa-pencil"></i> Cập nhật</button>
+
+                            <a class="btn btn-xs btn-danger" href="{{route('cart.delProduct',$key)}}"><i class="fa fa-times"></i> Xóa</a>
+                        </td>
+                    </form>
                 </tr>
                 <?php $i++; ?>
                 @endforeach

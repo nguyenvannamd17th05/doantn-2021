@@ -108,6 +108,11 @@
         <strong>Thành công! </strong>{{ session()->get('success') }}
     </div>
 @endif
+@if(session()->has('danger'))
+    <div class="alert alert-danger" style="position: fixed;right: 20px;top: 20px;left: 50%;transform: translateX(-50%);z-index: 9999999999999;">
+        <strong>Thất bại! </strong>{{ session()->get('danger') }}
+    </div>
+@endif
 @yield('content')
 
 <!-- Brand Logo Area Start -->

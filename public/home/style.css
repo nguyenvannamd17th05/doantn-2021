@@ -1985,7 +1985,7 @@ aside.sidebar-content ul li a:hover{color: #c2a476;}
     display: inline;
     margin-bottom: 0;
 }
-.product-list-wrapper .add-to-cart a{
+.product-list-wrapper .add-to-cart button{
 	font-size: 13px;
     letter-spacing: 1.2px;
     padding: 9px 18px;
@@ -1995,7 +1995,7 @@ aside.sidebar-content ul li a:hover{color: #c2a476;}
     background: #3f3f3f;
 	margin: 0;
 }
-.product-list-wrapper .add-to-cart a:hover{color: #c2a476;}
+.product-list-wrapper .add-to-cart button:hover{color: #c2a476;}
 .product-list-wrapper .single-product:hover .add-to-wishlist a {
     -webkit-animation: inherit;
     -moz-animation: inherit;

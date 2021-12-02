@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-action">
-                                <p class="lost_password"> <a href="#">Lost your password?</a></p>
+                                <p class="lost_password"> <a href="{{route('get.resetPassword')}}">Lost your password?</a></p>
                                 <div class="actions-log">
                                     <input type="submit" class="button" name="login" value="Đăng nhập">
                                 </div>
