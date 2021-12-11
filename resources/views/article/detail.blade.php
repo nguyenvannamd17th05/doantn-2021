@@ -1,10 +1,22 @@
 @extends('layout.app')
 @section('content')
 <style>
-    .article_content h2 { font-size: 1.4rem}
-    .article_content h1 { font-size: 18px !important;line-height: 24px}
+    .article_content h2 { font-size: 24px !important;}
+    .article_content h3 { font-size: 20px !important;}
+    .article_content h4 { font-size: 18px !important;}
+    /*.article_content h2 { font-size: 1.4rem}*/
+    /*.article_content h1 { font-size: 18px !important;line-height: 24px}*/
     .article_content  { font-family:  Roboto, sans-serif;}
     .main-contact-area { margin-top: 20px}
+    .article_detail{
+        overflow: hidden;
+    }
+    .article_detail img {
+        margin: 0 auto;
+        text-align: center;
+        max-width: 100%;
+        display: block;
+    }
 </style>
 <div class="breadcrumbs">
     <div class="container">
@@ -40,7 +52,7 @@
                         <span style="display: inline-block;font-size: 12px;color: #999;vertical-align: middle;margin: -2px 5px 0;cursor: pointer;">{{time_elapsed_string($articleDetail->created_at)}}</span>
                     </div>
                     <p style="font-weight: 500;color: #333">{{ $articleDetail->a_desc}}</p>
-                    <div style="text-align: justify">
+                    <div class="article_detail" style="text-align: justify">
                         {!! $articleDetail->a_content !!}
                     </div>
                 </div>

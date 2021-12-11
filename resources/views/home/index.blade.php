@@ -440,7 +440,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="single-post" style="margin-bottom: 40px">
                             <div class="post-thumb">
-                                <a href="#">
+                                <a href="{{route('article.detail',[$article->a_slug,$article->id])}}">
                                     <img src="{{asset(pare_url_file($article->a_avatar,'article'))}}" alt="" style=" width: 370px;height: 280px" />
                                 </a>
                             </div>
