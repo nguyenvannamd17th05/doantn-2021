@@ -58,7 +58,7 @@
                                     </td>
                                     <td>{{$transaction->created_at->format('d-m-Y')}}</td>
                                     <td>
-                                        <a class="btn btn-default" href="{{route('admin.transaction.action',['delete',$transaction->id])}}" ><i class="fas fa-trash"></i> Xóa</a>
+                                        <a class="btn btn-default" href="{{route('admin.transaction.delete',$transaction->id)}}" ><i class="fas fa-trash"></i> Xóa</a>
                                         <a class="btn btn-default js_order_item" data-id="{{$transaction->id}}" data-total="Tổng hóa đơn: {{number_format($transaction->tr_total,0,',','.') }} đ" href="{{route('admin.transaction.view',$transaction->id)}}" ><i class="fas fa-eye"></i></a>
                                     </td>
                                     </tr>
@@ -67,7 +67,6 @@
                         </table>
                         <div class="row">
                             {{ $transactions->links()}}
-
                         </div>
                     </div>
 
@@ -100,6 +99,7 @@
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
         $(function (){
@@ -110,7 +110,7 @@
                 $("#md_content").html('')
 
                 $(".transaction_id").text('').text($this.attr('data-id'));
-                $(".transaction_total").text($this.attr('data-total'));
+                $(".transaction_total").text($this.attr('data-total')).css("font-weight","bold");
                 $("#myOrderModal").modal('show');
                 $.ajax({
                     url: url,

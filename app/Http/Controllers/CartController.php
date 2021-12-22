@@ -104,7 +104,5 @@ class CartController extends FrontendController
         $products=\Cart::content();
         return view('cart.pay',compact('products'));
     }
-    public function sendInvolve(){
 
-    }
 }

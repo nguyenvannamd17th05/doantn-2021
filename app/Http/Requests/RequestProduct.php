@@ -21,7 +21,7 @@ class RequestProduct extends FormRequest
             'pro_name'=>'required|unique:products,pro_name,'.$this->id,
             'cate_id'=>'required',
             'pro_price'=>'required',
-            'pro_desc'=>'required',
+            'pro_desc'=>'bail|required|max:255',
             'pro_content'=>'required'
         ];
     }
@@ -33,8 +33,8 @@ class RequestProduct extends FormRequest
             'cate_id.required'=>'Loại sản phẩm không được để trống!',
             'pro_price.required'=>'Giá sản phẩm không được để trống',
             'pro_desc.required'=>'Mô tả không được để trống',
+            'pro_desc.max' => 'Không được quá 255 ký tự',
             'pro_content.required'=>'Nội dung không được để trống',
-
         ];
     }
 }

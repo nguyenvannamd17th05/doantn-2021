@@ -21,8 +21,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-@include('admin::layouts.header')
-
 
 @include('user.sidebar')
 

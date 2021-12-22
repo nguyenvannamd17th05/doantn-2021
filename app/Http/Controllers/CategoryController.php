@@ -64,7 +64,7 @@ class CategoryController extends FrontendController
                         $products->orderby('id','desc');
                 }
             }
-            $products=$products->paginate(9);
+            $products=$products->paginate(3);
             $cateProduct=Category::find($id);
             return view('product.index',compact('products','cateProduct'));
         }

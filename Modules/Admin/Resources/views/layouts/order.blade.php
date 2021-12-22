@@ -8,7 +8,7 @@
             <th scope="col">Giá</th>
             <th scope="col">Số lượng</th>
             <th scope="col">Thành tiền</th>
-            <th scope="col">Thao tác</th>
+
         </tr>
         </thead>
         <tbody>
@@ -24,16 +24,13 @@
                   <span>
                       {{number_format($order->or_price,0,',','.')}}đ
                       <br>
-                      - {{$order->or_sale}}%</i>
+                      <i>- {{$order->or_sale}}%</i>
                   </span>
                 </td>
                 <td>{{$order->or_qty}}</td>
                 <td>
 
                     {{number_format($order->or_qty*$order->or_price*(100-$order->or_sale)/100,0,',','.')}}đ</td>
-                <td>
-                    <a href=""><i class="fa fa-times"></i> Xóa</a>
-                </td>
             </tr>
             <?php $i++; ?>
         @endforeach

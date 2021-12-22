@@ -25,9 +25,10 @@ class RequestContact extends FormRequest
     {
         return [
             'c_name'=>'required',
-            'c_email'=>'bail|required|email|ends_with:gmail.com,yahoo.com',
+            'c_email'=>'bail|required|email:rfc,dns|ends_with:gmail.com,yahoo.com',
             'c_title'=>'required',
-            'c_content'=>'required'
+            'c_content'=>'required',
+            'phone'=>'bail|required|numeric|digits:10',
         ];
     }
     public function messages()
@@ -39,6 +40,9 @@ class RequestContact extends FormRequest
             'c_email.ends_with'=>'Email phải là gmail.com hoặc yahoo.com',
             'c_title.required'=>'Tiêu đề không được để trống',
             'c_content.required'=>'Nội dung không được để trống',
+            'phone.required'=> 'Số điện thoại không được để trống',
+            'phone.numeric'=>'Số điện thoại phải là chữ số',
+            'phone.digits'=>'Số điện thoại phải gồm 10 chữ số'
         ];
     }
 }

@@ -36,8 +36,8 @@
                                 <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Số điện thoại</th>
-
-
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,17 +45,20 @@
                                 <tr>
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
-
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
-
+                                    <td>
+                                        <a class="badge {{$user->getActive($user->active)['class']}}" href="{{route('admin.user.action',['active',$user->id])}}"> {{$user->getActive($user->active)['name']}}</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-default" href="{{route('admin.user.action',['delete',$user->id])}}" ><i class="fas fa-trash-alt"></i> Delete</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <div class="row">
                             {{ $users->links()}}
-{{--                            {{ $users->appends($_GET)->links() }}--}}
                         </div>
                     </div>
 

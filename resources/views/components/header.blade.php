@@ -34,24 +34,6 @@
                             <li class="expand"><a href="{{route('contact.get')}}">Liên hệ</a>
 
                             </li>
-                            <li class="expand"><a href="">Quảng cáo</a>
-
-                            </li>
-{{--                            <li class="expand"><a href="#">Tin tức</a>--}}
-
-{{--                                <ul class="restrain sub-menu">--}}
-{{--                                    <li><a href="about-us.html">About Us</a></li>--}}
-{{--                                    <li><a href="contact-us.html">Contact Us</a></li>--}}
-{{--                                    <li><a href="checkout.html">Checkout</a></li>--}}
-{{--                                    <li><a href="login.html">Login</a></li>--}}
-{{--                                    <li><a href="product-details.html">Product Details</a></li>--}}
-{{--                                    <li><a href="shop-grid.html">Shop Grid</a></li>--}}
-{{--                                    <li><a href="shop-list.html">Shop List</a></li>--}}
-{{--                                    <li><a href="cart.html">Shopping cart</a></li>--}}
-{{--                                    <li><a href="wishlist.html">Wishlist</a></li>--}}
-{{--                                    <li><a href="404.html">404 Error</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
 
                         </ul>
                     </nav>
@@ -64,120 +46,7 @@
                             <nav>
                                 <ul>
                                     <li><a href="{{route('home.index')}}">Home</a>
-                                        <ul>
-                                            <li><a href="index-2.html">Home 2</a></li>
-                                            <li><a href="index-3.html">Home 3</a></li>
-                                            <li><a href="index-4.html">Home 4</a></li>
-                                            <li><a href="index-5.html">Home 5</a></li>
-                                            <li><a href="index-6.html">Home 6</a></li>
-                                            <li><a href="index-7.html">Home 7</a></li>
-                                            <li><a href="index-8.html">Home 8</a></li>
-                                        </ul>
                                     </li>
-                                    <li><a href="shop-grid.html">Man</a>
-                                        <ul>
-                                            <li><a href="shop-grid.html">Dresses</a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Coctail</a></li>
-                                                    <li><a href="shop-grid.html">Day</a></li>
-                                                    <li><a href="shop-grid.html">Evening </a></li>
-                                                    <li><a href="shop-grid.html">Sports</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="mega-menu-title" href="shop-grid.html"> Handbags </a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Blazers</a></li>
-                                                    <li><a href="shop-grid.html">Table</a></li>
-                                                    <li><a href="shop-grid.html">Coats</a></li>
-                                                    <li><a href="shop-grid.html">Kids</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="mega-menu-title" href="shop-grid.html"> Clothing </a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">T-Shirt</a></li>
-                                                    <li><a href="shop-grid.html">Coats</a></li>
-                                                    <li><a href="shop-grid.html">Jackets</a></li>
-                                                    <li><a href="shop-grid.html">Jeans</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop-list.html">Women</a>
-                                        <ul>
-                                            <li><a href="shop-grid.html">Rings</a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Coats & Jackets</a></li>
-                                                    <li><a href="shop-grid.html">Blazers</a></li>
-                                                    <li><a href="shop-grid.html">Jackets</a></li>
-                                                    <li><a href="shop-grid.html">Rincoats</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-grid.html">Dresses</a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Ankle Boots</a></li>
-                                                    <li><a href="shop-grid.html">Footwear</a></li>
-                                                    <li><a href="shop-grid.html">Clog Sandals</a></li>
-                                                    <li><a href="shop-grid.html">Combat Boots</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-grid.html">Accessories</a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Bootees bags</a></li>
-                                                    <li><a href="shop-grid.html">Blazers</a></li>
-                                                    <li><a href="shop-grid.html">Jackets</a></li>
-                                                    <li><a href="shop-grid.html">Jackets</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-grid.html">Top</a>
-                                                <ul>
-                                                    <li><a href="shop-grid.html">Briefs</a></li>
-                                                    <li><a href="shop-grid.html">Camis</a></li>
-                                                    <li><a href="shop-grid.html">Nigntwears</a></li>
-                                                    <li><a href="shop-grid.html">Shapewears</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop-grid.html">Shop</a>
-                                        <ul>
-                                            <li><a href="shop-list.html">Shop Pages</a>
-                                                <ul>
-                                                    <li><a href="shop-list.html">List View </a></li>
-                                                    <li><a href="shop-grid.html">Grid View</a></li>
-                                                    <li><a href="login.html">My Account</a></li>
-                                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                                    <li><a href="cart.html">Cart </a></li>
-                                                    <li><a href="checkout.html">Checkout </a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="product-details.html">Product Types</a>
-                                                <ul>
-                                                    <li><a href="product-details.html">Simple Product</a></li>
-                                                    <li><a href="product-details.html">Variables Product</a></li>
-                                                    <li><a href="product-details.html">Grouped Product</a></li>
-                                                    <li><a href="product-details.html">Downloadable</a></li>
-                                                    <li><a href="product-details.html">Virtual Product</a></li>
-                                                    <li><a href="product-details.html">External Product</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="shop-grid.html">Shop Grid</a></li>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="contact-us.html">Contact Us</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="cart.html">Shopping cart</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -190,25 +59,7 @@
             <div class="col-md-3 col-sm-12 nopadding-left">
                 <div class="top-detail">
                     <!-- language division start -->
-                    <div class="disflow">
-                        <div class="expand lang-all disflow">
-                            <a href="#"><img src="{{asset('home/img/country/en.gif')}}" alt="">English</a>
-                            <ul class="restrain language">
-                                <li><a href="#"><img src="{{asset('home/img/country/it.gif')}}" alt="">italiano</a></li>
-                                <li><a href="#"><img src="{{asset('home/img/country/nl_nl.gif')}}" alt="">Nederlands</a></li>
-                                <li><a href="#"><img src="{{asset('home/img/country/de_de.gif')}}" alt="">Deutsch</a></li>
-                                <li><a href="#"><img src="{{asset('home/img/country/en.gif')}}" alt="">English</a></li>
-                            </ul>
-                        </div>
-                        <div class="expand lang-all disflow">
-                            <a href="#">$ USD</a>
-                            <ul class="restrain language">
-                                <li><a href="#">€ Eur</a></li>
-                                <li><a href="#">$ USD</a></li>
-                                <li><a href="#">£ GBP</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
                     <!-- language division end -->
                     <!-- addcart top start -->
                     <div class="disflow">
@@ -273,7 +124,7 @@
                                 @if(Auth::check())
                                 <li><a href="{{route('user.index')}}">Quản lý</a></li>
                                 <li><a href="wishlist.html">Yêu thích</a></li>
-                                <li><a href="cart.html">Giỏ hàng</a></li>
+                                <li><a href="{{route('cart.listCart')}}">Giỏ hàng</a></li>
                                 <li><a href="{{route('get.logout')}}">Thoát</a></li>
                                 @else
                                 <li><a href="{{route('get.register')}}">Đăng ký</a></li>

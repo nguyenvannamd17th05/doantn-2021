@@ -30,7 +30,6 @@
                 <div class="row">
                     <div class="col-md-6">
                         @include('admin::category.form')
-
                     </div>
 
                 </div>

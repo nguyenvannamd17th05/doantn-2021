@@ -25,11 +25,10 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'bail|required|unique:users,email,'.$this->id,
+            'email'=>'bail|required|unique:users,email:rfc,dns,'.$this->id,
             'password'=>'bail|required|min:8',
             'cf_password'=>'bail|required|same:password',
             'phone'=>'bail|required|numeric|digits:10',
-
         ];
     }
     public  function messages()

@@ -1,3 +1,11 @@
+<style>
+    .gallery img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+</style>
 <form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
@@ -81,7 +89,13 @@
                 <label for="icon" class="form-label">Hình ảnh: </label>
                <input type="file" name="pro_image" id="imgInp" class="form-control-file">
             </div>
-
+            <div class="form-group gallery">
+{{--                <img id="imgOutput" src="{{isset($product->pro_image)?asset(pare_url_file($product->pro_image,'product')):asset('images/default.jpg')}}" style="width: 100px;height: 100px;" alt="">--}}
+            </div>
+            <div class="form-group">
+                <label for="icon" class="form-label">Hình ảnh phụ: </label>
+                <input type="file" multiple name="pro_image_multi[]" id="imgInput" class="form-control-file">
+            </div>
         </div>
     </div>
     <button type="submit" class="btn btn-success">Lưu thông tin</button>
@@ -98,5 +112,32 @@
                 imgOut.src = URL.createObjectURL(file)
             }
         }
+    </script>
+    <script>
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#imgInput').on('change', function() {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
     </script>
 @endsection

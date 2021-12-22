@@ -507,7 +507,7 @@
                                                         @foreach($products as $product)
                                                             <tr>
                                                                 <td width="80%" class="purchase_item">
-                                                                    <img style="width:100px;height: 70px " src="{{asset(pare_url_file($product->options->image,'product'))}}">
+                                                                    <img style="width:100px;height: 70px " src="{{$message->embed(asset(pare_url_file($product->options->image,'product')))}}">
                                                                     <span class="f-fallback">{{$product->name}}</span>
                                                                     <br>
                                                                     <span class="f-fallback">{{number_format($product->options->price_old,0,',','.')}} VNĐ x {{$product->qty}}</span>

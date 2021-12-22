@@ -81,35 +81,18 @@
                     <div class="zoomWrapper">
                         <div id="img-1" class="zoomWrapper single-zoom">
                             <a href="#">
-                                <img id="zoom1" src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" data-zoom-image="img/product-details/ex-big-1-1.jpg" alt="big-1">
+                                <img id="zoom1" src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" data-zoom-image="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="big-1">
                             </a>
                         </div>
                         <div class="single-zoom-thumb">
                             <ul class="bxslider" id="gallery_01">
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{pare_url_file($productDetail->pro_image,'product')}}" data-zoom-image="{{pare_url_file($productDetail->pro_image,'product')}}"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-1" /></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="{{pare_url_file($productDetail->pro_image,'product')}}" data-zoom-image="{{pare_url_file($productDetail->pro_image,'product')}}"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-2"></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-1-3.jpg" data-zoom-image="img/product-details/ex-big-1-3.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="ex-big-3" /></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-4.jpg" data-zoom-image="img/product-details/ex-big-4.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-4"></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-5.jpg" data-zoom-image="img/product-details/ex-big-5.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="zo-th-5" /></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-6.jpg" data-zoom-image="img/product-details/ex-big-6.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="ex-big-3" /></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-7.jpg" data-zoom-image="img/product-details/ex-big-7.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="ex-big-3" /></a>
-                                </li>
-                                <li class="">
-                                    <a href="#" class="elevatezoom-gallery" data-image="img/product-details/big-8.jpg" data-zoom-image="img/product-details/ex-big-8.jpg"><img src="{{asset(pare_url_file($productDetail->pro_image,'product'))}}" alt="ex-big-3" /></a>
-                                </li>
+                                @if(isset($productImgs))
+                                    @foreach($productImgs as $productImg)
+                                    <li >
+                                        <a href="#" class="elevatezoom-gallery" data-image="{{pare_url_file($productImg->image_path,'product_multi')}}" data-zoom-image="{{pare_url_file($productImg->image_path,'product_multi')}}"><img src="{{asset(pare_url_file($productImg->image_path,'product_multi'))}}" alt="zo-th-2"></a>
+                                    </li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -132,7 +115,7 @@
                                         @for($i=1;$i<=5;$i++)
                                         <a href="#"><i class="fa fa-star {{$i<=$rateDetail?'active':''}}"></i></a>
                                         @endfor
-                                        <p>({{$productDetail->pro_total_rating}} đánh giá)</p>
+                                        <p>({{$productDetail->pro_total_rating == 0 ? "Chưa có" : $productDetail->pro_total_rating}} đánh giá)</p>
                                     </div>
                                     <div class="price-boxes">
                                         @if ($productDetail->pro_sale)
@@ -144,14 +127,17 @@
                                     </div>
                                 </div>
                                 <div class="product-desc">
-                                    <p>{{$productDetail->pro_desc}}</p>
+                                    <p>
+                                        {{ \Illuminate\Support\Str::limit(strip_tags($productDetail->pro_desc), 500) }}
+                                        @if (strlen(strip_tags($productDetail->pro_desc)) > 500)
+                                            ... <a href="" class="btn btn-info btn-sm">Read More</a>
+                                        @endif
+                                    </p>
+{{--                                    <p>{{$productDetail->pro_desc}}</p>--}}
                                 </div>
                                 <p class="availability in-stock">Tình trạng:
-                                    @if($productDetail->pro_number>0)
-                                    <span>Còn hàng</span>
-                                    @else
-                                        <span>Tạm hết hàng</span>
-                                    @endif
+
+                                    <span> {{$productDetail->pro_number>0 ? 'Còn hàng' : 'Tạm hết hàng'}}</span>
                                 </p>
                                 <div class="actions-e">
                                     <div class="action-buttons-single">
@@ -159,7 +145,7 @@
                                             @csrf
                                         <div class="inputx-content">
                                             <label for="qty">Quantity:</label>
-                                            <input type="number" name="qty" id="qty" min="1" max="{{$productDetail->pro_number}}" maxlength="12" value="1" title="Qty" class="input-text qty">
+                                            <input type="number" name="qty" id="qty" min="1"  maxlength="12" value="1" title="Qty" class="input-text qty">
                                         </div>
                                         <div class="add-to-cart">
                                             <button type="submit">Add to cart</button>
@@ -175,9 +161,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="singl-share">
-                                    <a href="#"><img src="img/single-share.png" alt=""></a>
-                                </div>
+
                             </div>
                         </div>
                     </div>

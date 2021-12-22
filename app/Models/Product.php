@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 
 class Product extends Model
 {
+    protected $guarded=[];
     use HasFactory;
     const STATUS_PUBLIC=1;
     const STATUS_PRIVATE=0;
@@ -42,5 +43,7 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Category::class,'cate_id');
     }
-
+    public function images(){
+        return $this->hasMany(ProductImage::class,'pro_id');
+    }
 }

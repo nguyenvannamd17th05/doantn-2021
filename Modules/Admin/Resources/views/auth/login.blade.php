@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,6 +25,9 @@
                             <label for="password" class="text-info">Password:</label><br>
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
+                        @error('error')
+                        <div class="error-text">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                         </div>

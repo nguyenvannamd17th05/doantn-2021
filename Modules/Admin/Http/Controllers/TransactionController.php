@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\Admin\Http\Controllers;
 
 use App\Models\Order;
@@ -15,7 +14,7 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $transactions=Transaction::paginate(10);
+        $transactions=Transaction::orderByDesc('id')->paginate(10);
         return view('admin::transaction.index',compact('transactions'));
     }
 
@@ -46,6 +45,11 @@ class TransactionController extends Controller
         $transaction->tr_status=Transaction::STATUS_DONE;
         $transaction->save();
         return redirect()->back()->with('success','Đã xác nhận đơn hàng');
+    }
+    public function delete($id){
+        $transaction=Transaction::find($id);
+        $transaction->delete();
+        return redirect()->back()->with('success','Xóa sản phẩm thành công');
     }
 
 }

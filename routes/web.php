@@ -40,7 +40,6 @@ Route::group(['namespace'=>'Auth'],function (){
 });
 Route::get('/',[HomeController::class,'index'])->name('home.index');
 
-
 Route::get('/danh-muc/{slug}-{id}',[CategoryController::class,'listProduct'])->name('cate.listProduct');
 Route::get('/san-pham/{slug}-{id}',[ProductController::class,'detailProduct'])->name('product.detail');
 
@@ -65,7 +64,7 @@ Route::group(['prefix'=>'lien-he'],function (){
 Route::group(['prefix'=>'ajax','middleware'=>'CheckLoginUser'],function (){
     Route::post('danh-gia/{id}',[RatingController::class,'saveRating'])->name('rating.product');
 });
-Route::post('thanh-toan',[RatingController::class,'saveInfoShip']);
+//Route::post('thanh-toan',[RatingController::class,'saveInfoShip']);
 Route::group(['prefix'=>'user','middleware'=>'CheckLoginUser'],function (){
     Route::get('/',[UserController::class,'index'])->name('user.index');
     Route::get('/info',[UserController::class,'getInfo'])->name('user.info');

@@ -36,24 +36,14 @@
                                 <h2>Shop by</h2>
                             </div>
                         </aside>
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Categories</h6>
-                            </div>
-                            <ul class="sidebar-tags">
-                                <li><a href="#">Acsessories</a><span> (14)</span></li>
-                                <li><a href="#">Afternoon</a><span> (14)</span></li>
-                                <li><a href="#">Attachment</a><span> (14)</span></li>
-                                <li><a href="#">Beauty</a><span> (14)</span></li>
-                            </ul>
-                        </aside>
+
                         <aside class="sidebar-content">
                             <div class="sidebar-title">
                                 <h6>Availability</h6>
                             </div>
                             <ul>
-                                <li><a href="#">Not available</a><span> (1)</span></li>
-                                <li><a href="#">In stock</a><span> (2)</span></li>
+                                <li><a href="#">Not available</a><span> </span></li>
+                                <li><a href="#">In stock</a><span> </span></li>
                             </ul>
                         </aside>
                         <aside class="topbarr-category sidebar-content">
@@ -61,27 +51,16 @@
                                 <h6>Khoảng giá</h6>
                             </div>
                             <ul>
-                                <li><a class="{{Request::get('price')==1?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 1]) }} ">Dưới 2 triệu</a><span> (1)</span></li>
-                                <li><a class="{{Request::get('price')==2?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 2]) }} ">Từ 2-4 triệu</a><span> (2)</span></li>
-                                <li><a class="{{Request::get('price')==3?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 3]) }} ">Từ 4-7 triệu</a><span> (2)</span></li>
-                                <li><a class="{{Request::get('price')==4?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 4]) }} ">Từ 7-13 triệu</a><span> (2)</span></li>
-                                <li><a class="{{Request::get('price')==5?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 5]) }} ">Từ 13-20 triệu</a><span> (2)</span></li>
-                                <li><a class="{{Request::get('price')==6?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 6]) }} ">Trên 20 triệu</a><span> (2)</span></li>
+                                <li><a class="{{Request::get('price')==1?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 1]) }} ">Dưới 2 triệu</a><span> </span></li>
+                                <li><a class="{{Request::get('price')==2?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 2]) }} ">Từ 2-4 triệu</a><span> </span></li>
+                                <li><a class="{{Request::get('price')==3?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 3]) }} ">Từ 4-7 triệu</a><span> </span></li>
+                                <li><a class="{{Request::get('price')==4?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 4]) }} ">Từ 7-13 triệu</a><span> </span></li>
+                                <li><a class="{{Request::get('price')==5?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 5]) }} ">Từ 13-20 triệu</a><span> </span></li>
+                                <li><a class="{{Request::get('price')==6?'active':''}}" href="{{ request()->fullUrlWithQuery(['price' => 6]) }} ">Trên 20 triệu</a><span> </span></li>
                             </ul>
                         </aside>
 
-                        <aside class="sidebar-content">
-                            <div class="sidebar-title">
-                                <h6>Properties</h6>
-                            </div>
-                            <ul>
-                                <li><a href="#">Colorful Dress</a><span> (1)</span></li>
-                                <li><a href="#">Maxi Dress</a><span> (2)</span></li>
-                                <li><a href="#">Midi Dress</a><span> (2)</span></li>
-                                <li><a href="#">Short Dress</a><span> (2)</span></li>
-                                <li><a href="#">Short Sleeve</a><span> (2)</span></li>
-                            </ul>
-                        </aside>
+
                         <aside class="widge-topbar">
                             <div class="bar-title">
                                 <div class="bar-ping"><img src="{{asset('home/img/bar-ping.png')}}" alt=""></div>
@@ -185,7 +164,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <!-- product-row end -->
+
                     @endif
                         </div>
 
@@ -195,7 +174,6 @@
 
                                 <div class="col-md-4 col-sm-4 col-xs-12 text-center">
                                     <div class="pages">
-                                        <label>Page:</label>
                                         {!!$products->links()!!}
                                     </div>
                                 </div>
@@ -216,8 +194,6 @@
     $(function(){
         $(".orderby").change(function(){
             $("#form_sort").submit();
-
-
         })
     })
 </script>

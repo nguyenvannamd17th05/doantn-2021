@@ -5,6 +5,8 @@ namespace Modules\Admin\Http\Controllers;
 use App\Http\Requests\RequestProduct;
 use App\Models\Category;
 use App\Models\Product;
+
+use App\Models\ProductImage;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -21,7 +23,6 @@ class ProductController extends Controller
         if($request->cate)
             $products->where('cate_id',$request->cate);
         $products=$products->orderByDesc('id')->paginate(5);
-
         $categories=$this->getCategory();
         return view('admin::product.index',compact('products','categories'));
     }
@@ -29,13 +30,9 @@ class ProductController extends Controller
 
     public function create()
     {
-
         $categories=$this->getCategory();
         return view('admin::product.create',compact('categories'));
-
     }
-
-
     public function store(RequestProduct $requestProduct)
     {
         $this->insertOrUpdate($requestProduct);
@@ -46,13 +43,17 @@ class ProductController extends Controller
     }
     public function insertOrUpdate($requestProduct,$id=''){
         $product=new Product();
-        if($id) $product=Product::find($id);
+        $productImg= new ProductImage();
+        if($id) {
+            $product=Product::find($id);
+            $productImg= ProductImage::where('pro_id',$id)->get();
+        }
         $product->pro_name        =$requestProduct->pro_name;
         $product->pro_slug        =Str::slug($requestProduct->pro_name);
         $product->cate_id         =$requestProduct->cate_id;
         $product->pro_price       =$requestProduct->pro_price;
         $product->pro_sale        =$requestProduct->pro_sale;
-        $product->pro_number        =$requestProduct->pro_number;
+        $product->pro_number      =$requestProduct->pro_number;
         $product->pro_desc        =$requestProduct->pro_desc;
         $product->pro_content     =$requestProduct->pro_content;
         $product->pro_title_seo   =$requestProduct->pro_title_seo ? $requestProduct->pro_title_seo : $requestProduct->pro_name;
@@ -64,6 +65,19 @@ class ProductController extends Controller
             }
         }
         $product->save();
+        if($requestProduct->hasFile('pro_image_multi')){
+            if($id)
+                $productImg->where('pro_id',$id)->delete();
+            foreach ($requestProduct->pro_image_multi as $key=> $v){
+                $fileMulti= upload_image('pro_image_multi','product_multi', $key);
+                if(isset($fileMulti['name'])) {
+                    $product->images()->create([
+                        'image_path' => $fileMulti['name']
+                    ]);
+                }
+            }
+        }
+
     }
 
     public function edit($id)

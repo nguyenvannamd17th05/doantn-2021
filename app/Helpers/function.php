@@ -8,13 +8,15 @@ if (!function_exists('upload_image'))
      * @param array $extend [ định dạng file có thể upload được]
      * @return array|int [ tham số trả về là 1 mảng - nếu lỗi trả về int ]
      */
-    function upload_image($file , $folder = '',array $extend  = array() )
+    function upload_image($file , $folder = '',$key,array $extend  = array() )
     {
         $code = 1;
 
         // lay duong dan anh
-        $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'];
-
+        if(isset($key))
+            $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'][$key];
+        else
+            $baseFilename = public_path() . '/uploads/' . $_FILES[$file]['name'];
         // thong tin file
         $info = new SplFileInfo($baseFilename);
 
@@ -48,7 +50,10 @@ if (!function_exists('upload_image'))
         }
 
         // di chuyen file vao thu muc uploads
-        move_uploaded_file($_FILES[$file]['tmp_name'], $path. $filename);
+        if(isset($key))
+            move_uploaded_file($_FILES[$file]['tmp_name'][$key], $path. $filename);
+        else
+            move_uploaded_file($_FILES[$file]['tmp_name'], $path. $filename);
 
         $data = [
             'name'              => $filename,
@@ -58,8 +63,6 @@ if (!function_exists('upload_image'))
         return $data;
     }
 }
-
-
 if (!function_exists('pare_url_file')) {
     function pare_url_file($image,$folder = '')
     {

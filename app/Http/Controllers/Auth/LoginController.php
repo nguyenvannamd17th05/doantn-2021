@@ -29,17 +29,21 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request){
         $data=$request->only('email','password');
-        if(Auth::attempt($data)){
+        if(Auth::guard('web')->attempt($data)){
+            if(Auth::guard('web')->user()->active==0) {
+                Auth::guard('web')->logout();
+                $error = new MessageBag(['error' => 'Tài khoản đang bị khóa vui lòng liên hệ lại Admin']);
+                return redirect()->route('get.login')->withErrors($error);
+            }
             return redirect()->route('home.index');
         }
         else{
             $error=new MessageBag(['error'=>'Tên tài khoản hoặc mật khẩu không chính xác!']);
             return redirect()->back()->withErrors($error);
         }
-
     }
     public function getLogout(){
-        Auth::logout();
+        Auth::guard('web')->logout();
         return redirect()->route('home.index');
     }
 

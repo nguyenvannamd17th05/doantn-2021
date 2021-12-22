@@ -56,10 +56,9 @@
                                     <a class="badge {{$category->getStatus($category->c_active)['class']}}" href="{{route('admin.cate.action',['active',$category->id])}}">{{$category->getStatus($category->c_active)['name']}}</a>
                                     </td>
                                     <td>
-
                                         <a class="btn btn-default" href="{{route('admin.cate.edit',$category->id)}}" ><i class="fas fa-pen" ></i> Edit</a>
                                         <a class="btn btn-default" href="{{route('admin.cate.action',['delete',$category->id])}}" ><i class="fas fa-trash-alt"></i> Delete</a>
-
+                                    </td>
                                 </tr>
                                 @endforeach
                             @endif

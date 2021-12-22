@@ -13,21 +13,11 @@
                     <img src="{{asset('adminlte/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{get_data_user('admins','name')}}</a>
+                <a href="{{route('admin.info')}}" class="d-block">{{get_data_user('admins','name')}}</a>
             </div>
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -59,7 +49,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{Route::currentRouteName()=='admin.order.index'?'active-sidebar':''}}">
+                <li class="nav-item {{Route::currentRouteName()=='admin.transaction.index'?'active-sidebar':''}}">
                     <a href="{{route('admin.transaction.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-file-invoice-dollar"></i>
                         <p>
@@ -89,6 +79,23 @@
                         <i class="nav-icon fas fa-star"></i>
                         <p>
                             Đánh giá sản phẩm
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item {{Route::currentRouteName()=='admin.employee.index'?'active-sidebar':''}}">
+                    <a href="{{route('admin.employee.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
+                            Quản lý nhân sự
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{Route::currentRouteName()=='admin.role.index'?'active-sidebar':''}}">
+                    <a href="{{route('admin.role.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user-tag"></i>
+                        <p>
+                            Quản lý vai trò
                         </p>
                     </a>
                 </li>

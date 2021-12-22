@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class ProductController extends FrontendController
         if($id=array_pop($url)){
             $productDetail=Product::where('pro_active',Product::STATUS_PUBLIC)->find($id);
         }
+        $productImgs=ProductImage::where('pro_id',$id)->get();
         $ratings = Rating::with('user:id,name,total_pay')
             ->where('pro_id',$id)
             ->orderBy('id',"DESC")
@@ -42,6 +44,6 @@ class ProductController extends FrontendController
                 }
             }
         }
-        return view('product.detail',compact('productDetail','ratings','arrayRatings'));
+        return view('product.detail',compact('productDetail','productImgs','ratings','arrayRatings'));
     }
 }
